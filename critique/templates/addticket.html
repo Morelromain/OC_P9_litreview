@@ -1,0 +1,12 @@
+{% extends 'main.html' %}
+{% block content %}
+    {% if form.instance.id %}
+        <form method="POST" action="{% url 'addticket' id_ticket=form.instance.id %}">
+    {% else %}
+        <form method="POST" action="{% url 'addticket'%}">
+    {% endif %}
+{% csrf_token %}
+{{ form }}
+<input type="submit">
+</form>
+{% endblock %}

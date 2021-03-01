@@ -1,0 +1,6 @@
+{% extends 'main.html' %}
+{% block content %}
+    {{ ticket.title }}<br/><br/>
+    {{ ticket.content }}<br/><br/>
+    <small>Ecrit le {{ ticket.time_created }}</small>
+{% endblock %}

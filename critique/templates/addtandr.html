@@ -1,0 +1,14 @@
+{% extends 'main.html' %}
+{% block content %}
+<a>Ticker et Review</a><br>
+<form method="POST" id="form_t" action="{% url 'addtandr'%}">
+{% csrf_token %}
+
+{{ t_form }}
+<br><br>
+{{ r_form }}
+
+{{ form }}
+<input type="submit">
+</form>
+{% endblock %}

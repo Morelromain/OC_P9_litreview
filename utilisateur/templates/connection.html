@@ -1,0 +1,42 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block addcss %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock %}
+{% block content %}
+    Page de connection
+    <ul>
+    {% if users %}
+        {% for user in users %}
+            <li>{{ user.username}}</a> | 
+        {% endfor %}
+    {% else %}
+    <span class="text-danger">Il n'y a pas d'users</span>
+    {% endif %}
+    </ul>
+
+
+    
+    
+
+    
+
+
+    {% if form.instance.id %}
+        <form method="POST" action="{% url 'connection' id_user=form.instance.id %}">
+    {% else %}
+        <form method="POST" action="{% url 'connection'%}">
+    {% endif %}
+    
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit">
+    </form>
+
+
+
+
+    <a href="{% url 'test' %}">Se loguer</a>
+    <a href="{% url 'register' %}">Ajouter un user</a>
+
+{% endblock %}

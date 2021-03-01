@@ -1,0 +1,9 @@
+{% extends 'main.html' %}
+{% block content %}
+    TEST
+    {% if user.is_authenticated %}
+    Vous êtes connecté, {{ user.username }} !  <a href="{% url 'logout'%}">Click here to logout.</a>
+    {% else %}
+    Pas de connection <a href="{% url 'login'%}">Click here to login.</a>
+    {% endif %}
+{% endblock %}

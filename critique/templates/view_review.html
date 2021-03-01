@@ -1,0 +1,6 @@
+{% extends 'main.html' %}
+{% block content %}
+    {{ review.headline }}<br/><br/>
+    {{ review.body }}<br/><br/>
+    <small>Ecrit le {{ review.time_created }}</small>
+{% endblock %}

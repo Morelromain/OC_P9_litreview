@@ -1,0 +1,39 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block addcss %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock %}
+
+{% block content %}
+    Ici on voit feed
+    <br>
+    <a href="{% url 'addticket' %}">Créer un ticket</a> |
+    <a href="{% url 'addtandr' %}">Créer un ticket + review</a> 
+    <br>
+    {% for post in posts %}
+        {% if post.content_type == 'TICKET' %}
+
+        <li><a href="{% url 'viewticket' id_ticket=post.id %}">{{ post.title}}</a> 
+            <a>{{ post.content }}</a> 
+            {% if post.image %}
+                <img src="{{post.image.url}}" alt="{{article.titre}}" style="width: 200px; height: 200px;">
+            {% endif %}
+            <a href="{% url 'addticket' id_ticket=post.id %}">Modifier mon ticket</a> | 
+            <a href="{% url 'deleteticket' id_ticket=post.id %}">Supprimer mon ticket</a> |
+            <a href="{% url 'linkreview' id_ticket=post.id %}">Lier une reviewA</a>
+
+            {% elif post.content_type == 'REVIEW' %}
+            <li><a href="{% url 'viewreview' id_review=post.id %}">{{ post.headline}}</a> 
+                <a>{{ post.body }}</a> 
+                <a>{{ post.ticket }}</a> 
+                <a>REVIEW</a>
+                <a href="{% url 'addreview' id_review=post.id %}">Modifier ma review</a> | 
+                <a href="{% url 'deletereview' id_review=post.id %}">Supprimer ma review</a></li>
+                
+        {% endif %}
+    {% endfor %}
+
+{% endblock %}
+
+
+
