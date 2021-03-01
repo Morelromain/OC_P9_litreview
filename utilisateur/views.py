@@ -22,7 +22,9 @@ def create_user(request, id_user=None):
     elif request.method == "POST":
         form = UserForm(request.POST)
         if form.is_valid():
-            form.save()
+            modif_form = form.save(commit=False)
+            modif_form.set_password(modif_form.password)
+            modif_form.save()
             return redirect('connection')
 
 def test(request):

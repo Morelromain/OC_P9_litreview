@@ -10,7 +10,7 @@ urlpatterns = [
 
     #path('accounts/', include('django.contrib.auth.urls')),  
  
-    path('addreview', views.create_review, name="addreview"),
+    #path('addreview', views.create_review, name="addreview"),
     path('addreview/<int:id_review>', views.create_review, name="addreview"),
 
     path('linkreview', views.link_review, name="linkreview"),    
@@ -26,5 +26,6 @@ urlpatterns = [
     path('viewticket/<int:id_ticket>', views.view_ticket, name="viewticket"),
     path('deleteticket/<int:id_ticket>', views.delete_ticket, name="deleteticket"),
 
+    path('myposts', views.view_myposts, name="myposts"),
 
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

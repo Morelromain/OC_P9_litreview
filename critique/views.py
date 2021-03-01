@@ -68,6 +68,7 @@ def create_t_and_r(request, id_ticket=None):
         if t_form.is_valid and r_form.is_valid():
 
             t_modif = t_form.save(False)
+            t_modif.user = request.user
             t_modif.save()
 
             review_f = r_form.save(False)
@@ -76,7 +77,6 @@ def create_t_and_r(request, id_ticket=None):
             review_f.save()
 
             return redirect('feed')
-            #return render(request, 'linkreview.html',)
 
 
 def link_review(request, id_ticket=None): 
@@ -113,6 +113,20 @@ def delete_ticket(request, id_ticket):
     ticket.delete()
     return redirect('feed')
 
+def view_myposts(request):
+    #reviews = Review.objects.all() 
+    reviews = Review.objects.filter(user = request.user)
+    reviews = reviews.annotate(content_type=Value('REVIEW', CharField()))
+    #tickets = Ticket.objects.all() 
+    tickets = Ticket.objects.filter(user = request.user)
+    tickets = tickets.annotate(content_type=Value('TICKET', CharField()))
+    posts = sorted(
+        chain(reviews, tickets), 
+        key=lambda post: post.time_created, 
+        reverse=True
+    )
+    return render(request, 'myposts.html', context={'posts': posts})
 
-from django.http import HttpResponse
+
+#from django.http import HttpResponse
 

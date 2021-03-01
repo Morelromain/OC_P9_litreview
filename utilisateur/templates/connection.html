@@ -12,10 +12,9 @@
         <a href="{% url 'logout'%}"> Se déconnecter</a><br>
     {% else %}
         <a href="{% url 'login'%}">Se connecter</a><br>
-        <a href="{% url 'login'%}">Creer un compte</a><br>
+        <a href="{% url 'register'%}">Creer un compte</a><br>
     {% endif %}
 
-    </form>
-    <a href="{% url 'register' %}">Ajouter un user</a>
+
     
 {% endblock %}
