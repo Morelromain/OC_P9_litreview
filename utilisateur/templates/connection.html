@@ -4,39 +4,18 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 {% endblock %}
 {% block content %}
-    Page de connection
-    <ul>
-    {% if users %}
-        {% for user in users %}
-            <li>{{ user.username}}</a> | 
-        {% endfor %}
+    Page de connection <br>
+    
+    {% if user.is_authenticated %}
+        Bienvenue, {{ user.username }} !<br>
+        <a href="{% url 'feed' %}">ENTRER</a><br>
+        <a href="{% url 'logout'%}"> Se déconnecter</a><br>
     {% else %}
-    <span class="text-danger">Il n'y a pas d'users</span>
+        <a href="{% url 'login'%}">Se connecter</a><br>
+        <a href="{% url 'login'%}">Creer un compte</a><br>
     {% endif %}
-    </ul>
 
-
-    
-    
-
-    
-
-
-    {% if form.instance.id %}
-        <form method="POST" action="{% url 'connection' id_user=form.instance.id %}">
-    {% else %}
-        <form method="POST" action="{% url 'connection'%}">
-    {% endif %}
-    
-    {% csrf_token %}
-    {{ form }}
-    <input type="submit">
     </form>
-
-
-
-
-    <a href="{% url 'test' %}">Se loguer</a>
     <a href="{% url 'register' %}">Ajouter un user</a>
-
+    
 {% endblock %}

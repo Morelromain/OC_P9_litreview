@@ -12,7 +12,8 @@
     {% if user.is_authenticated %}
     Vous êtes connecté, {{ user.username }} !  <a href="{% url 'logout'%}"> Se déconnecter</a>
     {% else %}
-    Pas de connection <a href="{% url 'login'%}">Click here to login.</a>
+    <a>Site de critiques littéraires</a>
+    <!-- Pas de connection <a href="{% url 'login'%}">Click here to login.</a> -->
     {% endif %}
 </div>
 {% block content %}
