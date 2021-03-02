@@ -24,13 +24,16 @@ def feed(request):
     return render(request, 'feed.html', context={'posts': posts})
 
 
+
+
+
 def create_ticket(request, id_ticket=None):
     instance_ticket = Ticket.objects.get(pk=id_ticket) if id_ticket is not None else None
     if request.method == "GET":
         form = TicketForm(instance=instance_ticket)
         return render(request, 'addticket.html', locals())
     elif request.method == "POST":
-        form = TicketForm(request.POST, instance=instance_ticket)
+        form = TicketForm(request.POST, request.FILES, instance=instance_ticket)
         if form.is_valid():
             modif_form = form.save(commit=False)
             modif_form.user = request.user
@@ -63,7 +66,7 @@ def create_t_and_r(request, id_ticket=None):
         return render(request, 'addtandr.html', locals())
 
     elif request.method == "POST":
-        t_form = TicketForm(request.POST)
+        t_form = TicketForm(request.POST, request.FILES)
         r_form = ReviewForm(request.POST)
         if t_form.is_valid and r_form.is_valid():
 
@@ -96,6 +99,7 @@ def link_review(request, id_ticket=None):
 
 def view_review(request, id_review):
     review = get_object_or_404(Review, pk=id_review)
+    ticket = get_object_or_404(Ticket, pk=review.ticket.id)
     return render(request, 'view_review.html', locals())
 
 

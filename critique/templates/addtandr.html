@@ -1,7 +1,7 @@
 {% extends 'main.html' %}
 {% block content %}
 <a>Ticker et Review</a><br>
-<form method="POST" id="form_t" action="{% url 'addtandr'%}">
+<form method="POST" id="form_t" enctype="multipart/form-data" action="{% url 'addtandr'%}">
 {% csrf_token %}
 
 {{ t_form }}

@@ -1,9 +1,9 @@
 {% extends 'main.html' %}
 {% block content %}
     {% if form.instance.id %}
-        <form method="POST" action="{% url 'addticket' id_ticket=form.instance.id %}">
+        <form method="POST" enctype="multipart/form-data" action="{% url 'addticket' id_ticket=form.instance.id %}">
     {% else %}
-        <form method="POST" action="{% url 'addticket'%}">
+        <form method="POST" enctype="multipart/form-data" action="{% url 'addticket'%}">
     {% endif %}
 {% csrf_token %}
 {{ form }}

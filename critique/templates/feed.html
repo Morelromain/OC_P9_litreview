@@ -16,8 +16,9 @@
         <li><a href="{% url 'viewticket' id_ticket=post.id %}">{{ post.title}}</a> 
             <a>{{ post.content }}</a> 
             <a>{{ post.user }}</a> 
+            <a>{{ post.image }}</a> 
             {% if post.image %}
-                <img src="{{post.image.url}}" alt="{{article.titre}}" style="width: 200px; height: 200px;">
+                <img src="{{post.image.url}}" alt="{{post.titre}}" style="width: 200px; height: 200px;">
             {% endif %}
             {% if user == post.user %}
                 <a href="{% url 'addticket' id_ticket=post.id %}">Modifier mon ticket</a> | 

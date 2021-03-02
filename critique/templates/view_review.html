@@ -1,6 +1,16 @@
 {% extends 'main.html' %}
 {% block content %}
-    {{ review.headline }}<br/><br/>
-    {{ review.body }}<br/><br/>
-    <small>Ecrit le {{ review.time_created }}</small>
+
+{{ ticket.title }}<br/><br/>
+{{ ticket.content }}<br/><br/>
+{{ ticket.image }}<br/><br/>
+{% if ticket.image %}
+    <img src="{{ticket.image.url}}" alt="{{ticket.titre}}" style="width: 200px; height: 200px;">
+{% endif %}
+<small>Ecrit le {{ ticket.time_created }}</small><br>
+
+
+{{ review.headline }}<br/><br/>
+{{ review.body }}<br/><br/>
+<small>Ecrit le {{ review.time_created }}</small>
 {% endblock %}
