@@ -8,6 +8,7 @@ class User(AbstractUser):
 
 class UserFollows(models.Model):
     # Your UserF ollows model definition goes here
+    objects = models.Manager()
     user = models.ForeignKey(
         to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='following')
     followed_user = models.ForeignKey(
