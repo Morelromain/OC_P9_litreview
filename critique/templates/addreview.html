@@ -1,19 +1,26 @@
 {% extends 'main.html' %}
+
+{% load static %}
+{% block addcss %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock %}
+
 {% block content %}
-    {{ instance_ticket.headline }}<br/><br/>
-    {{ request.user.body }}<br/><br/>
-    {{ instance_ticket }}<br/><br/>
-    <small>Ecrit le {{ instance_ticket.time_created }}</small>
-
-
-    {% if form.instance.id %}
-        <form method="POST" action="{% url 'addreview' id_review=form.instance.id %}">
-    {% else %}
-        <!--<form method="POST" action="{% url 'addreview'%}">-->
+<div id="block1">
+    <p>{{ instance_ticket.user }} a demandé une critique</p>
+    <p>{{ instance_ticket.title}}</p>
+    <p>{{ instance_ticket.content }}</p>
+    {% if instance_ticket.image %}
+        <p><img src="{{instance_ticket.image.url}}" alt="{{instance_ticket.titre}}" style="width: 200px; height: 200px;"></p>
     {% endif %}
+    <p><small>{{ instance_ticket.time_created }}</small></p>
+</div>
 
+<form method="POST" action="{% url 'addreview' id_review=form.instance.id %}">
 {% csrf_token %}
-{{ form }}
+<div id="block1">
+    {{ form }}
+</div>
 <input type="submit">
 </form>
 {% endblock %}

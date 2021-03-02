@@ -1,14 +1,21 @@
 {% extends 'main.html' %}
+
+{% load static %}
+{% block addcss %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock %}
+
 {% block content %}
-<a>Ticker et Review</a><br>
+<a>Creer une critique</a><br>
 <form method="POST" id="form_t" enctype="multipart/form-data" action="{% url 'addtandr'%}">
 {% csrf_token %}
-
-{{ t_form }}
-<br><br>
-{{ r_form }}
-
+<div id="block1">
+    {{ t_form }}
+</div>
+<div id="block1">
+    {{ r_form }}
+</div>
 {{ form }}
-<input type="submit">
+    <input type="submit">
 </form>
 {% endblock %}
