@@ -1,3 +1,29 @@
+body {
+    background: rgb(252, 252, 241);
+    font-family: Arial, sans-serif;
+    color: rgb(24, 24, 22);
+}
+
 a {
-    color: red;
+    color: green;
+}
+
+#bloc_page {
+    width: 1000px;
+    margin: auto;
+}
+
+#block1 {
+    padding: 10px 10px 10px 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border:2px solid rgb(9, 53, 3);
+    border-radius: 5px;
+}
+
+#block2 {
+    margin: 20px 20px 20px 20px;
+    padding: 5px 5px 5px 5px;
+    border: 1px solid rgb(4, 29, 1);
+    border-radius: 5px;
 }

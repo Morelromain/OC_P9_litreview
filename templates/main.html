@@ -8,20 +8,22 @@
 </head>
 <body>
 <div class="jumbotron">
-    <h2>LITReview</h2>
-    {% if user.is_authenticated %}
-    Vous êtes connecté, {{ user.username }} ! |
-    <a href="{% url 'feed'%}">Mon Flux</a> |
-    <a href="{% url 'myposts'%}">Mes Tickets/Critiques</a> |
-    <a href="{% url 'subscription'%}">Mes abonnements</a> |
-    <a href="{% url 'logout'%}">Se déconnecter</a> |
-
-    {% else %}
-    <a>Site de critiques littéraires</a>
-    <!-- Pas de connection <a href="{% url 'login'%}">Click here to login.</a> -->
-    {% endif %}
+    <div id="bloc_page">
+        <h2>LITReview</h2>
+        {% if user.is_authenticated %}
+            Vous êtes connecté, {{ user.username }} ! |
+            <a href="{% url 'feed'%}">Mon Flux</a> |
+            <a href="{% url 'myposts'%}">Mes Tickets/Critiques</a> |
+            <a href="{% url 'subscription'%}">Mes abonnements</a> |
+            <a href="{% url 'logout'%}">Se déconnecter</a> |
+        {% else %}
+            <a>Site de critiques littéraires</a>
+        {% endif %}
+    </div>
 </div>
-{% block content %}
-{% endblock %}
+<div id="bloc_page">
+    {% block content %}
+    {% endblock %}
+</div>
 </body>
 </html>

@@ -1,16 +1,24 @@
 {% extends 'main.html' %}
-{% block content %}
-<a>Abonnements de {{ user }}</a><br>
-{% for usersfollow in usersfollows %}
-    <a>{{ usersfollow.followed_user }}</a> | 
-    <a href="{% url 'delete_subs' id_subs=usersfollow.id%}">Supprimer</a> <br>
-{% endfor %}
-<br>
 
-<a>Ajouter un abonnements</a>
-<form method="POST" action="{% url 'subscription'%}">
-{% csrf_token %}
-{{ form }}
-<input type="submit">
-</form>
+{% load static %}
+{% block addcss %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock %}
+
+{% block content %}
+<div id="block1">
+    <p>Mes Abonnements</p>
+    {% for usersfollow in usersfollows %}
+        <li>{{ usersfollow.followed_user }} 
+        <a href="{% url 'delete_subs' id_subs=usersfollow.id%}">Se désabonner</a></li>
+    {% endfor %}
+</div>
+<div id="block1">
+    <p>Ajouter un abonnements</p>
+    <form method="POST" action="{% url 'subscription'%}">
+    {% csrf_token %}
+    {{ form }}
+        <input type="submit">
+    </form>
+</div>
 {% endblock %}

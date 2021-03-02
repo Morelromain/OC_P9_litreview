@@ -1,47 +1,44 @@
 {% extends 'main.html' %}
+
 {% load static %}
 {% block addcss %}
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
 {% endblock %}
 
 {% block content %}
-    Ici on voit feed
-    <br>
-    <a href="{% url 'addticket' %}">Créer un ticket</a> |
-    <a href="{% url 'addtandr' %}">Créer un ticket + review</a> 
-    <br>
-    {% for post in posts %}
-        {% if post.content_type == 'TICKET' %}
+<table>
+    <tr><td><a href="{% url 'addticket' %}">Demander une critique</a> |
+    <a href="{% url 'addtandr' %}">Créer une critique</a></td></tr>
+</table><br>
 
-        <li><a href="{% url 'viewticket' id_ticket=post.id %}">{{ post.title}}</a> 
-            <a>{{ post.content }}</a> 
-            <a>{{ post.user }}</a> 
-            <a>{{ post.image }}</a> 
-            {% if post.image %}
-                <img src="{{post.image.url}}" alt="{{post.titre}}" style="width: 200px; height: 200px;">
-            {% endif %}
-            {% if user == post.user %}
-                <a href="{% url 'addticket' id_ticket=post.id %}">Modifier mon ticket</a> | 
-                <a href="{% url 'deleteticket' id_ticket=post.id %}">Supprimer mon ticket</a> |
-            {% endif %}
-            <a href="{% url 'linkreview' id_ticket=post.id %}">Lier une reviewA</a>
-
-            {% elif post.content_type == 'REVIEW' %}
-            <li><a href="{% url 'viewreview' id_review=post.id %}">{{ post.headline}}</a> 
-                <a>{{ post.body }}</a> 
-                <a>{{ post.ticket }}</a> 
-                <a>{{ post.user }}</a> 
-                <a>{{ user.username }}<a>
-                <a>REVIEW</a>
-                {% if user == post.user %}
-                    <a href="{% url 'addreview' id_review=post.id %}">Modifier ma review {{ user.username }}</a> |
-                    <a href="{% url 'deletereview' id_review=post.id %}">Supprimer ma review</a></li>
-                {% endif %}
-
+{% for post in posts %}
+    <div id="block1">
+    {% if post.content_type == 'TICKET' %}
+    
+        <p>{{ post.user }} a demandé une critique</p>
+        <p>{{ post.title}}</p>
+        <p>{{ post.content }}</p>
+        {% if post.image %}
+            <p><img src="{{post.image.url}}" alt="{{post.titre}}" style="width: 200px; height: 200px;"></p>
         {% endif %}
-    {% endfor %}
+            <a href="{% url 'linkreview' id_ticket=post.id %}">Ecrire une critique</a>
 
+    {% elif post.content_type == 'REVIEW' %}
+    
+        <p>{{ post.user }} a écrit une critique</p>
+        <p>{{ post.headline}}</p>
+        <p>{{ post.body }}</p>
+
+        <div id="block2">
+            <p>{{ post.ticket.user }} a demandé une critique</p>
+            <p>{{ post.ticket.title}}</p>
+            <p>{{ post.ticket.content }}</p>
+                {% if post.ticket.image %}
+                    <p><img src="{{post.ticket.image.url}}" alt="{{post.ticket.titre}}" style="width: 200px; height: 200px;"></p>
+                {% endif %}
+        </div>
+    
+    {% endif %}
+    </div>
+{% endfor %}
 {% endblock %}
-
-
-

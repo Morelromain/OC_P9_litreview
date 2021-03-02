@@ -1,14 +1,16 @@
 {% extends 'main.html' %}
+
+{% load static %}
+{% block addcss %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock %}
+
 {% block content %}
-
-
+<div id="block1">
     <form method="POST" action="{% url 'register'%}">
-
-
-
-
-{% csrf_token %}
-{{ form }}
-<input type="submit">
-</form>
+    {% csrf_token %}
+    {{ form }}
+        <input type="submit">
+    </form>
+</div>
 {% endblock %}

@@ -18,7 +18,7 @@ def connection(request):
     #return redirect('feed')
 
 def create_user(request, id_user=None):
-    #a modif (basé sur ticket, créé ET modif)
+
     User = get_user_model()
     if request.method == "GET":
         form = UserForm()
