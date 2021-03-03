@@ -27,3 +27,12 @@ a {
     border: 1px solid rgb(4, 29, 1);
     border-radius: 5px;
 }
+
+#block3 {
+    float: right;
+    text-align: right;
+}
+
+#block4 {
+    text-align: center;
+}

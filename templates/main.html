@@ -11,11 +11,13 @@
     <div id="bloc_page">
         <h2>LITReview</h2>
         {% if user.is_authenticated %}
-            Vous êtes connecté, {{ user.username }} ! |
-            <a href="{% url 'feed'%}">Mon Flux</a> |
-            <a href="{% url 'myposts'%}">Mes Tickets/Critiques</a> |
-            <a href="{% url 'subscription'%}">Mes abonnements</a> |
-            <a href="{% url 'logout'%}">Se déconnecter</a> |
+            Vous êtes connecté, {{ user.username }} !
+            <div id="block3">
+                <a href="{% url 'feed'%}">Mon Flux</a> |
+                <a href="{% url 'myposts'%}">Mes Tickets/Critiques</a> |
+                <a href="{% url 'subscription'%}">Mes abonnements</a> |
+                <a href="{% url 'logout'%}">Se déconnecter</a>
+            </div>
         {% else %}
             <a>Site de critiques littéraires</a>
         {% endif %}

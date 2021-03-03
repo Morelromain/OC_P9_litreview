@@ -7,10 +7,6 @@
 
 {% block content %}
 <p>Mes Critiques et Demandes</p>
-<table>
-    <tr><td><a href="{% url 'addticket' %}">Créer un ticket</a> |
-    <a href="{% url 'addtandr' %}">Créer un ticket + review</a></td></tr>
-</table><br>
 
 {% for post in posts %}
     <div id="block1">

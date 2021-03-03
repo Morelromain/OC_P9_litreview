@@ -6,10 +6,11 @@
 {% endblock %}
 
 {% block content %}
-<table>
-    <tr><td><a href="{% url 'addticket' %}">Demander une critique</a> |
-    <a href="{% url 'addtandr' %}">Créer une critique</a></td></tr>
-</table><br>
+
+<div id="block4">
+    <a href="{% url 'addticket' %}">Demander une critique</a> | 
+    <a href="{% url 'addtandr' %}">Créer une critique</a>
+</div><br>
 
 {% for post in posts %}
     <div id="block1">

@@ -77,6 +77,7 @@ def subscription(request):
                     pass #erreur
             return redirect('subscription')
 
+@login_required
 def delete_subs(request, id_subs):
     subs = get_object_or_404(UserFollows, pk=id_subs)
     subs.delete()
