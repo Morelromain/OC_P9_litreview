@@ -16,14 +16,14 @@ urlpatterns = [
     path('linkreview', views.link_review, name="linkreview"),    
     path('linkreview/<int:id_ticket>', views.link_review, name="linkreview"),
 
-    path('viewreview/<int:id_review>', views.view_review, name="viewreview"),
+
     path('deletereview/<int:id_review>', views.delete_review, name="deletereview"),
 
     path('addtandr', views.create_t_and_r, name="addtandr"),
     
     path('addticket', views.create_ticket, name="addticket"),
     path('addticket/<int:id_ticket>', views.create_ticket, name="addticket"),
-    path('viewticket/<int:id_ticket>', views.view_ticket, name="viewticket"),
+
     path('deleteticket/<int:id_ticket>', views.delete_ticket, name="deleteticket"),
 
     path('myposts', views.view_myposts, name="myposts"),

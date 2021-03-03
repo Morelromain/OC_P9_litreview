@@ -32,7 +32,8 @@
         {% elif post.content_type == 'REVIEW' %}
 
             <p>{{ post.user }} a écrit une critique</p>
-            <p>{{ post.headline}}</p> 
+            <p>{{ post.headline }}</p> 
+            <p>{{ post.rating }}</p>
             <p>{{ post.body }}</p> 
             <p><small>{{ post.time_created }}</small></p>
  
