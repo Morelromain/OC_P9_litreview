@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from utilisateur.forms import UserForm
 from utilisateur.models import User
 from utilisateur.models import UserFollows
+from django.contrib.auth.decorators import login_required
 
 from utilisateur.forms import UserFollowsForm
 
@@ -54,6 +55,7 @@ def create_user(request, id_user=None):
                     pass #erreur
             return redirect('subscription')"""
 
+@login_required
 def subscription(request):
     usersfollows = UserFollows.objects.filter(user = request.user)
     followeds = UserFollows.objects.filter(followed_user = request.user)
@@ -79,6 +81,3 @@ def delete_subs(request, id_subs):
     subs = get_object_or_404(UserFollows, pk=id_subs)
     subs.delete()
     return redirect('subscription')
-
-def disconnect(request):
-    pass

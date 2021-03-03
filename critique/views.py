@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required
 
 from critique.forms import ReviewForm
 from critique.forms import TicketForm
@@ -17,6 +18,7 @@ from django.db.models import CharField, Value
     reviews2 = Review.objects.filter(user = usersfollows.user)
     return reviews2"""
 
+@login_required
 def feed(request):
     """reviews = Review.objects.all()  
     reviews = reviews.annotate(content_type=Value('REVIEW', CharField()))
@@ -46,7 +48,7 @@ def feed(request):
     )
     return render(request, 'feed.html', locals())
 
-
+@login_required
 def create_ticket(request, id_ticket=None):
     instance_ticket = Ticket.objects.get(pk=id_ticket) if id_ticket is not None else None
     if request.method == "GET":
@@ -61,7 +63,7 @@ def create_ticket(request, id_ticket=None):
             modif_form.save()
             return redirect('feed')
 
-
+@login_required
 def create_review(request, id_review=None): #Modif review
     instance_review = Review.objects.get(pk=id_review) if id_review is not None else None
     instance_ticket = Ticket.objects.get(pk=instance_review.ticket.id)
@@ -77,7 +79,7 @@ def create_review(request, id_review=None): #Modif review
             #formt.save()
             return redirect('feed')
 
-
+@login_required
 def create_t_and_r(request, id_ticket=None):
     if request.method == "GET":
         t_form = TicketForm()
@@ -101,7 +103,7 @@ def create_t_and_r(request, id_ticket=None):
 
             return redirect('feed')
 
-
+@login_required
 def link_review(request, id_ticket=None): 
     instance_ticket = Ticket.objects.get(pk=id_ticket) if id_ticket is not None else None
     if request.method == "GET":
@@ -118,42 +120,28 @@ def link_review(request, id_ticket=None):
             instance_ticket.save()
             return redirect('feed')
 
-
-def view_review(request, id_review):
-    review = get_object_or_404(Review, pk=id_review)
-    ticket = get_object_or_404(Ticket, pk=review.ticket.id)
-    return render(request, 'view_review.html', locals())
-
-
-def view_ticket(request, id_ticket):
-    ticket = get_object_or_404(Ticket, pk=id_ticket)
-    return render(request, 'view_ticket.html', locals())
-
+@login_required
 def delete_review(request, id_review):
     review = get_object_or_404(Review, pk=id_review)
     review.delete()
     return redirect('myposts')
 
+@login_required
 def delete_ticket(request, id_ticket):
     ticket = get_object_or_404(Ticket, pk=id_ticket)
     ticket.delete()
     return redirect('myposts')
 
+@login_required
 def view_myposts(request):
-
     tickets = Ticket.objects.filter(user = request.user)
     tickets = tickets.annotate(content_type=Value('TICKET', CharField()))
-
     reviews = Review.objects.filter(user = request.user)
     reviews = reviews.annotate(content_type=Value('REVIEW', CharField()))
     for tick in tickets:
         reviews2 = Review.objects.filter(ticket = tick.id)
         reviews2 = reviews2.annotate(content_type=Value('REVIEW', CharField()))
         reviews = sorted(chain(reviews, reviews2), key=lambda post: post.time_created)
-
-
-    
-
     posts = sorted(
         chain(reviews, tickets), 
         key=lambda post: post.time_created, 
