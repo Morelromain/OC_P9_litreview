@@ -6,15 +6,16 @@
 {% endblock %}
 
 {% block content %}
-<form method="post" action="{% url 'login' %}">
-  {% csrf_token %}
-      <label class="username">Nom</label><br>
-      {{ form.username }}<br><br>
-      <label class="password">Mot de passe</label><br>
-      {{ form.password }}<br><br>
-  <input type="submit" value="valider" />
-  <input type="hidden" name="next" value="{{ next }}" />
-</form>
-<!--<p><a href="{% url 'password_reset' %}">Lost password?</a></p>-->
+<div id="block1">
+  <form method="post" action="{% url 'login' %}">
+    {% csrf_token %}
+        <label class="username">Nom</label><br>
+        {{ form.username }}<br><br>
+        <label class="password">Mot de passe</label><br>
+        {{ form.password }}<br><br>
+    <input type="submit" value="valider" />
+    <input type="hidden" name="next" value="{{ next }}" />
+  </form>
+</div>
 <p><a href="{% url 'connection' %}">Annuler</a></p>
 {% endblock %}

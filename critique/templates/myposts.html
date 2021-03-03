@@ -11,43 +11,39 @@
 {% for post in posts %}
     <div id="block1">
     {% if post.content_type == 'TICKET' %}
-
         <p>{{ post.user }} a demandé une critique</p> 
         <p>{{ post.title}}</p> 
         <p>{{ post.content }}</p> 
         {% if post.image %}
-            <p><img src="{{post.image.url}}" alt="{{article.titre}}" style="width: 200px; height: 200px;"></p> 
+            <p><img src="{{post.image.url}}" alt="{{article.titre}}" 
+                style="width: 200px; height: 200px;"></p> 
         {% endif %}
         <p><small>{{ post.time_created }}</small></p>
-
         {% if user == post.user %}
             <a href="{% url 'addticket' id_ticket=post.id %}">Modifier</a>
             <a href="{% url 'deleteticket' id_ticket=post.id %}">Supprimer</a>
         {% endif %}
 
         {% elif post.content_type == 'REVIEW' %}
-
             <p>{{ post.user }} a écrit une critique</p>
             <p>{{ post.headline }}</p> 
             <p>{{ post.rating }}</p>
             <p>{{ post.body }}</p> 
             <p><small>{{ post.time_created }}</small></p>
- 
             <div id="block2">
                 <p>{{ post.ticket.user }} a demandé une critique</p>
                 <p>{{ post.ticket.title}}</p>
                 <p>{{ post.ticket.content }}</p>
                     {% if post.ticket.image %}
-                    <p><img src="{{post.ticket.image.url}}" alt="{{post.ticket.titre}}" style="width: 200px; height: 200px;"></p>
+                    <p><img src="{{post.ticket.image.url}}" alt="{{post.ticket.titre}}" 
+                        style="width: 200px; height: 200px;"></p>
                     {% endif %}
                     <p><small>{{ post.time_created }}</small></p>
             </div>
-
             {% if user == post.user %}
                 <a href="{% url 'addreview' id_review=post.id %}">Modifier</a> |
                 <a href="{% url 'deletereview' id_review=post.id %}">Supprimer</a>
             {% endif %}
-
     {% endif %}
     </div>
 {% endfor %}
