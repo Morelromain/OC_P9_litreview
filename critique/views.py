@@ -91,7 +91,7 @@ def create_t_and_r(request, id_ticket=None):
 
             t_modif = t_form.save(False)
             t_modif.user = request.user
-            modif_form.response = True
+            t_modif.response = True
             t_modif.save()
 
             review_f = r_form.save(False)
