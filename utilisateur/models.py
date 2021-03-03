@@ -7,7 +7,6 @@ class User(AbstractUser):
 
 
 class UserFollows(models.Model):
-    # Your UserF ollows model definition goes here
     objects = models.Manager()
     user = models.ForeignKey(
         to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='following')
@@ -15,6 +14,6 @@ class UserFollows(models.Model):
         to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='following_by')
 
     class Meta:
-        # ensures we don't get multiple UserFollows instances
-        # for unique user-user_followed pairs
         unique_together = ('user', 'followed_user', )
+    def __str__(self):
+        return 'Suivis: ' + str(self.user) + " > " + str(self.followed_user)
