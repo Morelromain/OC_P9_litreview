@@ -57,6 +57,7 @@ def create_ticket(request, id_ticket=None):
         if form.is_valid():
             modif_form = form.save(commit=False)
             modif_form.user = request.user
+            #modif_form.response = True
             modif_form.save()
             return redirect('feed')
 
@@ -72,6 +73,8 @@ def create_review(request, id_review=None): #Modif review
         if form.is_valid():
             aga = form.save(commit=False)
             aga.save()
+            #Ticket.response = True
+            #formt.save()
             return redirect('feed')
 
 
@@ -88,6 +91,7 @@ def create_t_and_r(request, id_ticket=None):
 
             t_modif = t_form.save(False)
             t_modif.user = request.user
+            modif_form.response = True
             t_modif.save()
 
             review_f = r_form.save(False)
@@ -110,6 +114,8 @@ def link_review(request, id_ticket=None):
             modif_form.ticket = instance_ticket
             modif_form.user = request.user
             modif_form.save()
+            instance_ticket.response = True
+            instance_ticket.save()
             return redirect('feed')
 
 
