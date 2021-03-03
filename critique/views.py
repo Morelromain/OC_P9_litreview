@@ -5,26 +5,46 @@ from critique.forms import TicketForm
 
 from critique.models import Review
 from critique.models import Ticket
+from utilisateur.models import UserFollows
 
 from itertools import chain
 from django.db.models import CharField, Value
 #from django.template.context_processors import csrf
 
 
+"""def get_users_viewable_reviews(request_user):
+    usersfollows = UserFollows.objects.filter(user = request_user)
+    reviews2 = Review.objects.filter(user = usersfollows.user)
+    return reviews2"""
+
 def feed(request):
-    reviews = Review.objects.all()  
+    """reviews = Review.objects.all()  
     reviews = reviews.annotate(content_type=Value('REVIEW', CharField()))
     tickets = Ticket.objects.all() 
+    tickets = tickets.annotate(content_type=Value('TICKET', CharField()))"""
+
+    usersfollows = UserFollows.objects.filter(user = request.user)
+
+    reviews = Review.objects.filter(user = request.user)
+    reviews = reviews.annotate(content_type=Value('REVIEW', CharField()))
+    for uf in usersfollows:
+        reviews2 = Review.objects.filter(user = uf.followed_user)
+        reviews2 = reviews2.annotate(content_type=Value('REVIEW', CharField()))
+        reviews = sorted(chain(reviews, reviews2), key=lambda post: post.time_created)
+    
+    tickets = Ticket.objects.filter(user = request.user)
     tickets = tickets.annotate(content_type=Value('TICKET', CharField()))
+    for uf in usersfollows:
+        tickets2 = Ticket.objects.filter(user = uf.followed_user)
+        tickets2 = tickets2.annotate(content_type=Value('TICKET', CharField()))
+        tickets = sorted(chain(tickets, tickets2), key=lambda post: post.time_created)
+    
     posts = sorted(
         chain(reviews, tickets), 
         key=lambda post: post.time_created, 
         reverse=True
     )
-    return render(request, 'feed.html', context={'posts': posts})
-
-
-
+    return render(request, 'feed.html', locals())
 
 
 def create_ticket(request, id_ticket=None):
@@ -59,10 +79,6 @@ def create_t_and_r(request, id_ticket=None):
     if request.method == "GET":
         t_form = TicketForm()
         r_form = ReviewForm()
-        #args = {}
-        #args.update(csrf(request))
-        #args['t_form'] = t_form
-        #args['r_form'] = r_form
         return render(request, 'addtandr.html', locals())
 
     elif request.method == "POST":
@@ -110,27 +126,34 @@ def view_ticket(request, id_ticket):
 def delete_review(request, id_review):
     review = get_object_or_404(Review, pk=id_review)
     review.delete()
-    return redirect('feed')
+    return redirect('myposts')
 
 def delete_ticket(request, id_ticket):
     ticket = get_object_or_404(Ticket, pk=id_ticket)
     ticket.delete()
-    return redirect('feed')
+    return redirect('myposts')
 
 def view_myposts(request):
-    #reviews = Review.objects.all() 
-    reviews = Review.objects.filter(user = request.user)
-    reviews = reviews.annotate(content_type=Value('REVIEW', CharField()))
-    #tickets = Ticket.objects.all() 
+
     tickets = Ticket.objects.filter(user = request.user)
     tickets = tickets.annotate(content_type=Value('TICKET', CharField()))
+
+    reviews = Review.objects.filter(user = request.user)
+    reviews = reviews.annotate(content_type=Value('REVIEW', CharField()))
+    for tick in tickets:
+        reviews2 = Review.objects.filter(ticket = tick.id)
+        reviews2 = reviews2.annotate(content_type=Value('REVIEW', CharField()))
+        reviews = sorted(chain(reviews, reviews2), key=lambda post: post.time_created)
+
+
+    
+
     posts = sorted(
         chain(reviews, tickets), 
         key=lambda post: post.time_created, 
         reverse=True
     )
-    return render(request, 'myposts.html', context={'posts': posts})
+    return render(request, 'myposts.html', locals())
 
 
-#from django.http import HttpResponse
 
