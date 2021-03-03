@@ -8,7 +8,7 @@ from utilisateur.models import UserFollows
 class UserForm(ModelForm):
     class Meta:
         model = User
-        fields = ['username', 'password']
+        fields = ['username', 'password', 'first_name']
 
 class UserFollowsForm(ModelForm):
     #followed_user = forms.CharField

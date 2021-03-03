@@ -27,10 +27,12 @@ def create_user(request, id_user=None):
         form = UserForm(request.POST)
         if form.is_valid():
             modif_form = form.save(commit=False)
-            modif_form.set_password(modif_form.password)
-            modif_form.save()
-            return redirect('connection')
-
+            if modif_form.password == modif_form.first_name:
+                modif_form.set_password(modif_form.password)
+                modif_form.first_name = ""
+                modif_form.save()
+                return redirect('connection')
+            return render(request, 'register.html', locals())
 
 """def subscription(request):
     usersfollows = UserFollows.objects.filter(user = request.user)
@@ -60,7 +62,7 @@ def subscription(request):
         form = UserFollowsForm()
         return render(request, 'subscription.html', locals())
     elif request.method == "POST":
-        form = UserFollowsForm(request.POST)
+        form = UserFollowsForm(request.POST) 
         if form.is_valid():
             modif_form = form.save(commit=False)
             modif_form.user = request.user
