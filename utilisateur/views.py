@@ -54,6 +54,7 @@ def create_user(request, id_user=None):
 
 def subscription(request):
     usersfollows = UserFollows.objects.filter(user = request.user)
+    followeds = UserFollows.objects.filter(followed_user = request.user)
 
     if request.method == "GET":
         form = UserFollowsForm()
