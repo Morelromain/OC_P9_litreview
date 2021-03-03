@@ -7,6 +7,8 @@
 
 {% block content %}
 <div id="block1">
+    <p>Vous êtes en train de poster en réponse à :</p>
+    <div id="block2">
     <p>{{ instance_ticket.user }} a demandé une critique</p>
     <p>{{ instance_ticket.title}}</p>
     <p>{{ instance_ticket.content }}</p>
@@ -14,12 +16,19 @@
         <p><img src="{{instance_ticket.image.url}}" alt="{{instance_ticket.titre}}" style="width: 200px; height: 200px;"></p>
     {% endif %}
     <p><small>{{ instance_ticket.time_created }}</small></p>
+    </div>
 </div>
 
 <form method="POST" action="{% url 'addreview' id_review=form.instance.id %}">
 {% csrf_token %}
 <div id="block1">
-    {{ form }}
+    <h4>Critique</h4>
+    <label class="title">Titre</label><br>
+    {{ form.headline }}<br><br>
+    <label class="title">Note</label><br>
+    {{ form.rating }}<br><br>
+    <label class="title">Commentaire</label><br>
+    {{ form.body }}<br><br>
 </div>
 <input type="submit">
 </form>

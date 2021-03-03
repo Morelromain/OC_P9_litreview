@@ -32,6 +32,26 @@ def create_user(request, id_user=None):
             return redirect('connection')
 
 
+"""def subscription(request):
+    usersfollows = UserFollows.objects.filter(user = request.user)
+
+    if request.method == "GET":
+        form = UserFollowsForm()
+        return render(request, 'subscription.html', locals())
+    elif request.method == "POST":
+        form = UserFollowsForm(request.POST)
+        if form.is_valid():
+            modif_form = form.save(commit=False)
+            modif_form.user = request.user
+            if modif_form.followed_user == request.user:
+                pass #erreur
+            else:
+                try:
+                    modif_form.save()
+                except:
+                    pass #erreur
+            return redirect('subscription')"""
+
 def subscription(request):
     usersfollows = UserFollows.objects.filter(user = request.user)
 
@@ -51,7 +71,6 @@ def subscription(request):
                 except:
                     pass #erreur
             return redirect('subscription')
-
 
 def delete_subs(request, id_subs):
     subs = get_object_or_404(UserFollows, pk=id_subs)

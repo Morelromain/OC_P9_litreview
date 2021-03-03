@@ -4,7 +4,6 @@ from django.conf import settings
 
 
 class Ticket(models.Model):
-    # Your Ticket model definition goes here
     objects = models.Manager()
     title = models.CharField(max_length=128)
     content = models.CharField(max_length=2048, blank=True)
@@ -19,7 +18,6 @@ class Review(models.Model):
     objects = models.Manager()
     ticket = models.ForeignKey(to=Ticket, on_delete=models.CASCADE)
     rating = models.PositiveSmallIntegerField(
-        # validates that rating must be between 0 and 5
         validators=[MinValueValidator(0), MaxValueValidator(5)])
     headline = models.CharField(max_length=128)
     body = models.CharField(max_length=8192, blank=True)

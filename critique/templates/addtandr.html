@@ -10,10 +10,22 @@
 <form method="POST" id="form_t" enctype="multipart/form-data" action="{% url 'addtandr'%}">
 {% csrf_token %}
 <div id="block1">
-    {{ t_form }}
+    <h4>Livre</h4>
+    <label class="title">Titre</label><br>
+    {{ t_form.title }}<br><br>
+    <label class="title">Description</label><br>
+    {{ t_form.content }}<br><br>
+    <label class="title">Image</label><br>
+    {{ t_form.image }}<br><br>
 </div>
 <div id="block1">
-    {{ r_form }}
+    <h4>Critique</h4>
+    <label class="title">Titre</label><br>
+    {{ r_form.headline }}<br><br>
+    <label class="title">Note</label><br>
+    {{ r_form.rating }}<br><br>
+    <label class="title">Commentaire</label><br>
+    {{ r_form.body }}<br><br>
 </div>
 {{ form }}
     <input type="submit">
