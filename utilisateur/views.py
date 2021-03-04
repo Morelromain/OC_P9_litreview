@@ -35,25 +35,6 @@ def create_user(request, id_user=None):
                 return redirect('connection')
             return render(request, 'register.html', locals())
 
-"""def subscription(request):
-    usersfollows = UserFollows.objects.filter(user = request.user)
-
-    if request.method == "GET":
-        form = UserFollowsForm()
-        return render(request, 'subscription.html', locals())
-    elif request.method == "POST":
-        form = UserFollowsForm(request.POST)
-        if form.is_valid():
-            modif_form = form.save(commit=False)
-            modif_form.user = request.user
-            if modif_form.followed_user == request.user:
-                pass #erreur
-            else:
-                try:
-                    modif_form.save()
-                except:
-                    pass #erreur
-            return redirect('subscription')"""
 
 @login_required
 def subscription(request):
@@ -68,6 +49,8 @@ def subscription(request):
         if form.is_valid():
             modif_form = form.save(commit=False)
             modif_form.user = request.user
+            #aaa = get_object_or_404(UserFollows, pk=modif_form.followed_user)
+            #modif_form.followed_user = aaa.id
             if modif_form.followed_user == request.user:
                 pass #erreur
             else:

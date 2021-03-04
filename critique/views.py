@@ -13,10 +13,7 @@ from django.db.models import CharField, Value
 #from django.template.context_processors import csrf
 
 
-"""def get_users_viewable_reviews(request_user):
-    usersfollows = UserFollows.objects.filter(user = request_user)
-    reviews2 = Review.objects.filter(user = usersfollows.user)
-    return reviews2"""
+
 
 @login_required
 def feed(request):
@@ -26,8 +23,13 @@ def feed(request):
     tickets = tickets.annotate(content_type=Value('TICKET', CharField()))"""
 
     usersfollows = UserFollows.objects.filter(user = request.user)
-
     reviews = Review.objects.filter(user = request.user)
+    
+    aaaa=[]
+    for revi in reviews:
+        aaaa.append(revi.ticket)
+
+
     reviews = reviews.annotate(content_type=Value('REVIEW', CharField()))
     for uf in usersfollows:
         reviews2 = Review.objects.filter(user = uf.followed_user)
@@ -46,6 +48,8 @@ def feed(request):
         key=lambda post: post.time_created, 
         reverse=True
     )
+
+
     return render(request, 'feed.html', locals())
 
 @login_required

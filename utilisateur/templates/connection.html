@@ -6,6 +6,7 @@
 
 {% block content %}
 <div id="block1">
+
     {% if user.is_authenticated %}
         <h3>Bienvenue, {{ user.username }} !</h3><br>
         <a href="{% url 'feed' %}">ENTRER</a><br><br>

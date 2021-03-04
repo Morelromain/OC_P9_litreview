@@ -3,6 +3,7 @@
 {% load static %}
 {% block addcss %}
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 {% endblock %}
 
 {% block content %}
@@ -24,26 +25,69 @@
             <a href="{% url 'deleteticket' id_ticket=post.id %}">Supprimer</a>
         {% endif %}
 
-        {% elif post.content_type == 'REVIEW' %}
-            <p>{{ post.user }} a écrit une critique</p>
-            <p>{{ post.headline }}</p> 
-            <p>{{ post.rating }}</p>
-            <p>{{ post.body }}</p> 
-            <p><small>{{ post.time_created }}</small></p>
-            <div id="block2">
-                <p>{{ post.ticket.user }} a demandé une critique</p>
-                <p>{{ post.ticket.title}}</p>
-                <p>{{ post.ticket.content }}</p>
-                    {% if post.ticket.image %}
-                    <p><img src="{{post.ticket.image.url}}" alt="{{post.ticket.titre}}" 
-                        style="width: 200px; height: 200px;"></p>
-                    {% endif %}
-                    <p><small>{{ post.time_created }}</small></p>
-            </div>
-            {% if user == post.user %}
-                <a href="{% url 'addreview' id_review=post.id %}">Modifier</a> |
-                <a href="{% url 'deletereview' id_review=post.id %}">Supprimer</a>
+    {% elif post.content_type == 'REVIEW' %}
+        <p>{{ post.user }} a écrit une critique</p>
+        <p>{{ post.headline }}</p> 
+        <div id="start">
+            {% if post.rating == 0 %}
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
             {% endif %}
+            {% if post.rating == 1 %}
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+            {% endif %}
+            {% if post.rating == 2 %}
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+            {% endif %}
+            {% if post.rating == 3 %}
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+            {% endif %}
+            {% if post.rating == 4 %}
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star"></span>
+            {% endif %}
+            {% if post.rating == 5 %}
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+            {% endif %}
+        </div>
+        <p>{{ post.body }}</p> 
+        <p><small>{{ post.time_created }}</small></p>
+        <div id="block2">
+            <p>{{ post.ticket.user }} a demandé une critique</p>
+            <p>{{ post.ticket.title}}</p>
+            <p>{{ post.ticket.content }}</p>
+                {% if post.ticket.image %}
+                <p><img src="{{post.ticket.image.url}}" alt="{{post.ticket.titre}}" 
+                    style="width: 200px; height: 200px;"></p>
+                {% endif %}
+                <p><small>{{ post.time_created }}</small></p>
+        </div>
+        {% if user == post.user %}
+            <a href="{% url 'addreview' id_review=post.id %}">Modifier</a> |
+            <a href="{% url 'deletereview' id_review=post.id %}">Supprimer</a>
+        {% endif %}
     {% endif %}
     </div>
 {% endfor %}

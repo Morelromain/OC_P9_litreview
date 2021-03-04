@@ -2,7 +2,8 @@
 
 {% load static %}
 {% block addcss %}
-<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link rel="stylesheet" href="{% static 'css/style.css' %}" >
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 {% endblock %}
 
 {% block content %}
@@ -23,14 +24,62 @@
                     style="width: 200px; height: 200px;"></p>
             {% endif %}
             <p><small>{{ post.time_created }}</small></p>
-            {% if post.response == False %}
+
+            
+            {% if post in aaaa %}
+                <a>A</av>
+            {% else %}
                 <a href="{% url 'linkreview' id_ticket=post.id %}">Ecrire une critique</a>
             {% endif %}
+
 
         {% elif post.content_type == 'REVIEW' %}
             <p>{{ post.user }} a écrit une critique</p>
             <p>{{ post.headline }}</p>
-            <p>{{ post.rating }}</p>
+            <div id="start">
+                {% if post.rating == 0 %}
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                {% endif %}
+                {% if post.rating == 1 %}
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                {% endif %}
+                {% if post.rating == 2 %}
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                {% endif %}
+                {% if post.rating == 3 %}
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                {% endif %}
+                {% if post.rating == 4 %}
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star"></span>
+                {% endif %}
+                {% if post.rating == 5 %}
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                {% endif %}
+            </div>
             <p>{{ post.body }}</p>
             <p><small>{{ post.time_created }}</small></p>
             <div id="block2">
