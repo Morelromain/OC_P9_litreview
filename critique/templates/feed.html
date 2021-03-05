@@ -7,7 +7,6 @@
 {% endblock %}
 
 {% block content %}
-
 <div id="block4">
     <a href="{% url 'addticket' %}">Demander une critique</a> | 
     <a href="{% url 'addtandr' %}">Créer une critique</a>
@@ -24,14 +23,9 @@
                     style="width: 200px; height: 200px;"></p>
             {% endif %}
             <p><small>{{ post.time_created }}</small></p>
-
-            
-            {% if post in aaaa %}
-                <a>A</av>
-            {% else %}
+            {% if post not in aaaa %}
                 <a href="{% url 'linkreview' id_ticket=post.id %}">Ecrire une critique</a>
             {% endif %}
-
 
         {% elif post.content_type == 'REVIEW' %}
             <p>{{ post.user }} a écrit une critique</p>
@@ -91,6 +85,9 @@
                             style="width: 200px; height: 200px;"></p>
                     {% endif %}
                     <p><small>{{ post.ticket.time_created }}</small></p>
+                    {% if post.ticket not in aaaa %}
+                        <a href="{% url 'linkreview' id_ticket=post.id %}">Ecrire une critique</a>
+                    {% endif %}
             </div>
         {% endif %}
     </div>

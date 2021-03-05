@@ -36,3 +36,7 @@ a {
 #block4 {
     text-align: center;
 }
+
+.checked {
+    color: green;
+  }
