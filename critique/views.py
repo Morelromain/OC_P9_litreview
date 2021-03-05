@@ -17,26 +17,32 @@ from django.db.models import CharField, Value
 
 @login_required
 def feed(request):
-    """reviews = Review.objects.all()  
-    reviews = reviews.annotate(content_type=Value('REVIEW', CharField()))
-    tickets = Ticket.objects.all() 
-    tickets = tickets.annotate(content_type=Value('TICKET', CharField()))"""
-
     usersfollows = UserFollows.objects.filter(user = request.user)
     reviews = Review.objects.filter(user = request.user)
     
+    tickets = Ticket.objects.filter(user = request.user)
+
     aaaa=[]
     for revi in reviews:
         aaaa.append(revi.ticket)
-
-
+    
     reviews = reviews.annotate(content_type=Value('REVIEW', CharField()))
+
+
+    for tick in tickets:
+        reviews3 = Review.objects.filter(ticket = tick.id).exclude(user = request.user)
+        reviews3 = reviews3.annotate(content_type=Value('REVIEW', CharField()))
+        reviews = sorted(chain(reviews, reviews3), key=lambda post: post.time_created)
+
+
+    
     for uf in usersfollows:
         reviews2 = Review.objects.filter(user = uf.followed_user)
         reviews2 = reviews2.annotate(content_type=Value('REVIEW', CharField()))
+        
         reviews = sorted(chain(reviews, reviews2), key=lambda post: post.time_created)
     
-    tickets = Ticket.objects.filter(user = request.user)
+    reviews = set(reviews)
     tickets = tickets.annotate(content_type=Value('TICKET', CharField()))
     for uf in usersfollows:
         tickets2 = Ticket.objects.filter(user = uf.followed_user)
@@ -97,7 +103,6 @@ def create_t_and_r(request, id_ticket=None):
 
             t_modif = t_form.save(False)
             t_modif.user = request.user
-            t_modif.response = True
             t_modif.save()
 
             review_f = r_form.save(False)
@@ -120,7 +125,6 @@ def link_review(request, id_ticket=None):
             modif_form.ticket = instance_ticket
             modif_form.user = request.user
             modif_form.save()
-            instance_ticket.response = True
             instance_ticket.save()
             return redirect('feed')
 
@@ -142,10 +146,10 @@ def view_myposts(request):
     tickets = tickets.annotate(content_type=Value('TICKET', CharField()))
     reviews = Review.objects.filter(user = request.user)
     reviews = reviews.annotate(content_type=Value('REVIEW', CharField()))
-    for tick in tickets:
-        reviews2 = Review.objects.filter(ticket = tick.id)
-        reviews2 = reviews2.annotate(content_type=Value('REVIEW', CharField()))
-        reviews = sorted(chain(reviews, reviews2), key=lambda post: post.time_created)
+    #for tick in tickets:
+    #    reviews2 = Review.objects.filter(ticket = tick.id)
+    #    reviews2 = reviews2.annotate(content_type=Value('REVIEW', CharField()))
+    #    reviews = sorted(chain(reviews, reviews2), key=lambda post: post.time_created)
     posts = sorted(
         chain(reviews, tickets), 
         key=lambda post: post.time_created, 

@@ -42,15 +42,19 @@ def subscription(request):
     followeds = UserFollows.objects.filter(followed_user = request.user)
 
     if request.method == "GET":
+        #formu = UserForm()
         form = UserFollowsForm()
         return render(request, 'subscription.html', locals())
     elif request.method == "POST":
         form = UserFollowsForm(request.POST) 
+        #formu = UserForm(request.POST)
+
         if form.is_valid():
             modif_form = form.save(commit=False)
             modif_form.user = request.user
-            #aaa = get_object_or_404(UserFollows, pk=modif_form.followed_user)
-            #modif_form.followed_user = aaa.id
+            #modif_formu = formu.save(commit=False)
+            #test2 = User.objects.get(user = modif_formu.formu)
+            #modif_form.followed_user = test2
             if modif_form.followed_user == request.user:
                 pass #erreur
             else:

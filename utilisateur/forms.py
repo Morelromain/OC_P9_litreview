@@ -16,4 +16,6 @@ class UserFollowsForm(ModelForm):
         model = UserFollows
         fields = ['followed_user']
         #widgets = {'followed_user': forms.TextInput}
-        
+    #def clean_followed_user(self):
+    #    followed_user = self.cleaned_data.get("clean_followed_user")
+    #    return followed_user
