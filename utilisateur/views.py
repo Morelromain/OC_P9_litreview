@@ -52,11 +52,13 @@ def subscription(request):
         if form.is_valid():
             modif_form = form.save(commit=False)
             modif_form.user = request.user
-            #modif_formu = formu.save(commit=False)
-            #test2 = User.objects.get(user = modif_formu.formu)
-            #modif_form.followed_user = test2
+            #modif_form.followed_user = request.user
+            test2 = User.objects.get(username = modif_form.confirm)
+            modif_form.followed_user = test2
+            modif_form.confirm = ""
             if modif_form.followed_user == request.user:
-                pass #erreur
+                modif_form.save()
+                #pass #erreur
             else:
                 try:
                     modif_form.save()

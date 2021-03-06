@@ -12,6 +12,7 @@ class UserFollows(models.Model):
         to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='following')
     followed_user = models.ForeignKey(
         to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='following_by')
+    confirm = models.CharField(max_length=128, blank=True)
 
     class Meta:
         unique_together = ('user', 'followed_user', )

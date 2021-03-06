@@ -18,6 +18,8 @@ class TicketForm(ModelForm):
     class Meta:
         model = Ticket
         fields = ['title', 'content', 'image']
-        widgets={
-            'content': forms.Textarea(attrs={'cols': 131, 'rows': 5})}
+        widgets={'content': forms.Textarea(attrs={'cols': 131, 'rows': 5})}
+
+
+            
 

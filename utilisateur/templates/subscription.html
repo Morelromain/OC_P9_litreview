@@ -20,11 +20,11 @@
     {% endfor %}
 </div>
 <div id="block1">
+    {{request.user.id}}
     {{request.user.username}}
     <p>Ajouter un abonnements</p>
     <form method="POST" action="{% url 'subscription'%}">
     {% csrf_token %}
-    
     {{ form }}
         <input type="submit">
     </form>
