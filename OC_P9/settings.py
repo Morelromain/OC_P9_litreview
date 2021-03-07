@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'critique',
     'utilisateur',
+    'django_cleanup',
 ]
 
 MIDDLEWARE = [
