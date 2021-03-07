@@ -14,9 +14,9 @@ from django.contrib.auth import authenticate, login, logout
 
 
 def connection(request):
-
+    pass
     #return render(request, 'connection.html', locals())
-    return redirect('settings.LOGIN_URL')
+    #return redirect('settings.LOGIN_URL')
 
 def create_user(request, id_user=None):
 
