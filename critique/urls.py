@@ -6,6 +6,9 @@ from OC_P9 import settings
 
 
 urlpatterns = [
+    path('', views.feed, name="feed"),
+    path('accounts/', include('django.contrib.auth.urls')), 
+    
     path('feed', views.feed, name="feed"),
     path('addreview/<int:id_review>', views.create_review, name="addreview"),
     path('linkreview', views.link_review, name="linkreview"),    
