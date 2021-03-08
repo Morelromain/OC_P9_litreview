@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.conf import settings
 
+
 class User(AbstractUser):
     pass
 
@@ -16,5 +17,6 @@ class UserFollows(models.Model):
 
     class Meta:
         unique_together = ('user', 'followed_user', )
+
     def __str__(self):
         return 'Suivis: ' + str(self.user) + " > " + str(self.followed_user)

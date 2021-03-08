@@ -1,25 +1,18 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from utilisateur.forms import UserForm
-from utilisateur.models import User
-from utilisateur.models import UserFollows
+from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 
+from utilisateur.forms import UserForm
 from utilisateur.forms import UserFollowsForm
-
-
-from django.contrib.auth import get_user_model
-
-from django.contrib.auth import authenticate, login, logout
-
+from utilisateur.models import User
+from utilisateur.models import UserFollows
 
 
 def connection(request):
     pass
-    #return render(request, 'connection.html', locals())
-    #return redirect('settings.LOGIN_URL')
+
 
 def create_user(request, id_user=None):
-
     User = get_user_model()
     if request.method == "GET":
         form = UserForm()
@@ -42,24 +35,19 @@ def create_user(request, id_user=None):
 
 @login_required
 def subscription(request):
-    usersfollows = UserFollows.objects.filter(user = request.user)
-    followeds = UserFollows.objects.filter(followed_user = request.user)
-
+    usersfollows = UserFollows.objects.filter(user=request.user)
+    followeds = UserFollows.objects.filter(followed_user=request.user)
     if request.method == "GET":
-        #formu = UserForm()
         form = UserFollowsForm()
         return render(request, 'subscription.html', locals())
     elif request.method == "POST":
-        form = UserFollowsForm(request.POST) 
-        #formu = UserForm(request.POST)
-
+        form = UserFollowsForm(request.POST)
         if form.is_valid():
             modif_form = form.save(commit=False)
             modif_form.user = request.user
-            #modif_form.followed_user = request.user
-            try : 
-                test2 = User.objects.get(username = modif_form.confirm)
-            except :
+            try:
+                test2 = User.objects.get(username=modif_form.confirm)
+            except Exception:
                 erreur = "Cette personne n'existe pas"
                 return render(request, 'subscription.html', locals())
             modif_form.followed_user = test2
@@ -69,9 +57,10 @@ def subscription(request):
             else:
                 try:
                     modif_form.save()
-                except:
+                except Exception:
                     erreur = "Vous suivez déjà cette personne"
             return render(request, 'subscription.html', locals())
+
 
 @login_required
 def delete_subs(request, id_subs):

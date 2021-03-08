@@ -4,12 +4,9 @@ from django.contrib.auth.admin import UserAdmin
 from .models import User, UserFollows
 
 
-admin.site.register(User, UserAdmin)
-
 class UserFollowsAdmin(admin.ModelAdmin):
     exclude = ('confirm',)
 
+
+admin.site.register(User, UserAdmin)
 admin.site.register(UserFollows, UserFollowsAdmin)
-
-
-
