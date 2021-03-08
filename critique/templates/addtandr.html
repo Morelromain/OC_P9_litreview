@@ -22,8 +22,24 @@
     <h4>Critique</h4>
     <label class="title">Titre</label><br>
     {{ r_form.headline }}<br><br>
-    <label class="title">Note</label><br>
-    {{ r_form.rating }}<br><br>
+    
+
+
+    <div id="button-rating">
+        <label class="title">Note</label><br>
+        <input type="radio" name="tabs" value="0"  id="0" checked="checked"/>
+        <label for="toggle-tab3">0</label>
+        <input type="radio" name="tabs" value="1" id="1"/>
+        <label for="toggle-tab1">1</label>
+        <input type="radio" name="tabs" value="2" id="2"/>
+        <label for="toggle-tab2">2</label>
+        <input type="radio" name="tabs" value="3"  id="3"/>
+        <label for="toggle-tab3">3</label>
+        <input type="radio" name="tabs" value="4"  id="4"/>
+        <label for="toggle-tab3">4</label>
+        <input type="radio" name="tabs" value="5"  id="5"/>
+        <label for="toggle-tab3">5</label>
+    </div>
     <label class="title">Commentaire</label><br>
     {{ r_form.body }}<br><br>
 </div>

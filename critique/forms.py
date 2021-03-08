@@ -9,12 +9,14 @@ from critique.models import Ticket
 class ReviewForm(ModelForm):
     class Meta:
         model = Review
-        fields = ['headline', 'rating', 'body']
+        fields = ['headline', 'body']
         widgets={
             'body': forms.Textarea(attrs={'cols': 131, 'rows': 5}),
             'headline': forms.TextInput(attrs={'size': 134})
             }
-        
+
+
+
 
 class TicketForm(ModelForm):
     class Meta:

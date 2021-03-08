@@ -40,3 +40,14 @@ a {
 .checked {
     color: green;
   }
+
+
+
+.testinput{
+    background-color: green;
+    color: white;
+    margin-top: 10px;
+    margin-left: 90%;
+    padding: 8px 16px;
+    cursor: pointer;
+}

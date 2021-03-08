@@ -84,6 +84,7 @@ def create_review(request, id_review=None): #Modif review
         form = ReviewForm(request.POST, instance=instance_review)
         if form.is_valid():
             aga = form.save(commit=False)
+            aga.rating = request.POST.get('tabs')
             aga.save()
             #Ticket.response = True
             #formt.save()
@@ -108,6 +109,9 @@ def create_t_and_r(request, id_ticket=None):
             review_f = r_form.save(False)
             review_f.ticket = t_modif
             review_f.user = request.user
+
+            review_f.rating = request.POST.get('tabs')
+
             review_f.save()
 
             return redirect('feed')
@@ -124,6 +128,7 @@ def link_review(request, id_ticket=None):
             modif_form = form.save(commit=False)
             modif_form.ticket = instance_ticket
             modif_form.user = request.user
+            modif_form.rating = request.POST.get('tabs')
             modif_form.save()
             instance_ticket.save()
             return redirect('feed')
