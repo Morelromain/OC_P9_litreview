@@ -28,6 +28,10 @@ a {
     border-radius: 5px;
 }
 
+#bloc_center {
+    text-align: center
+}
+
 #banner {
     float: right;
     text-align: right;

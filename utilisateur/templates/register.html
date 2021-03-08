@@ -7,18 +7,20 @@
 
 {% block content %}
 <div id="block1">
-    <form method="POST" action="{% url 'register'%}">
-    {% csrf_token %}
-    <h4>S'enregistrer</h4>
-    <label class="username">Nom</label><br>
-    {{ form.username }}<br><br>
-    <label class="password">Mot de passe</label><br>
-    {{ form.password }}<br><br>
-    <label class="password">Confirmer mot de passe</label><br>
-    {{ form.first_name }}<br><br>
-        <input type="submit">
-    </form>
-    <div id="error">{{ erreur }}</div>
+    <div id="bloc_center">
+        <form method="POST" action="{% url 'register'%}">
+        {% csrf_token %}
+        <h4>S'enregistrer</h4>
+        <label class="username">Nom</label><br>
+        {{ form.username }}<br><br>
+        <label class="password">Mot de passe</label><br>
+        {{ form.password }}<br><br>
+        <label class="password">Confirmer mot de passe</label><br>
+        {{ form.first_name }}<br><br>
+            <input type="submit">
+        </form>
+        <div id="error">{{ erreur }}</div>
+    </div>
 </div>
 <p><a href="{% url 'connection' %}">Annuler</a></p>
 {% endblock %}
