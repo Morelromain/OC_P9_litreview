@@ -7,6 +7,15 @@
 
 {% block content %}
 <div id="block1">
+    <p>Ajouter un abonnements</p>
+    <form method="POST" action="{% url 'subscription'%}">
+    {% csrf_token %}
+    {{ form }}
+        <input type="submit">
+    </form>
+    <div id="error">{{ erreur }}</div>
+</div>
+<div id="block1">
     <p>Mes Abonnements</p>
     {% for usersfollow in usersfollows %}
         <li>{{ usersfollow.followed_user }} 
@@ -18,14 +27,5 @@
     {% for followed in followeds %}
         <li>{{ followed.user }}  
     {% endfor %}
-</div>
-<div id="block1">
-    <p>Ajouter un abonnements</p>
-    <form method="POST" action="{% url 'subscription'%}">
-    {% csrf_token %}
-    {{ form }}
-        <input type="submit">
-    </form>
-    <div id="error">{{ erreur }}</div>
 </div>
 {% endblock %}

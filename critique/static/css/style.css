@@ -28,13 +28,25 @@ a {
     border-radius: 5px;
 }
 
-#block3 {
+#banner {
     float: right;
     text-align: right;
 }
 
-#block4 {
+#add {
     text-align: center;
+}
+
+
+#right
+{
+    position:absolute;
+    margin-left: 500px;
+}
+
+#left
+{
+    margin-left: 100px;
 }
 
 #error {
@@ -44,14 +56,3 @@ a {
 .checked {
     color: green;
   }
-
-
-
-.testinput{
-    background-color: green;
-    color: white;
-    margin-top: 10px;
-    margin-left: 90%;
-    padding: 8px 16px;
-    cursor: pointer;
-}

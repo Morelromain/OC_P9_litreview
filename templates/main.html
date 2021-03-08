@@ -14,7 +14,7 @@
         <h2>LITReview</h2>
         {% if user.is_authenticated %}
             Vous êtes connecté, {{ user.username }} !
-            <div id="block3">
+            <div id="banner">
                 <a href="{% url 'feed'%}">Mon Flux</a> |
                 <a href="{% url 'myposts'%}">Mes Tickets/Critiques</a> |
                 <a href="{% url 'subscription'%}">Mes abonnements</a> |
