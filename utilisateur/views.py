@@ -59,7 +59,7 @@ def subscription(request):
             #modif_form.followed_user = request.user
             try : 
                 test2 = User.objects.get(username = modif_form.confirm)
-            except User.DoesNotExist :
+            except :
                 erreur = "Cette personne n'existe pas"
                 return render(request, 'subscription.html', locals())
             modif_form.followed_user = test2
