@@ -33,7 +33,11 @@ def create_user(request, id_user=None):
                 modif_form.first_name = ""
                 modif_form.save()
                 return redirect('connection')
-            return render(request, 'register.html', locals())
+            else:
+                erreur = "Les mots de passes saisis ne sont pas identique"
+        else:
+            erreur = "Nom déjà pris"
+        return render(request, 'register.html', locals())
 
 
 @login_required
@@ -53,18 +57,21 @@ def subscription(request):
             modif_form = form.save(commit=False)
             modif_form.user = request.user
             #modif_form.followed_user = request.user
-            test2 = User.objects.get(username = modif_form.confirm)
+            try : 
+                test2 = User.objects.get(username = modif_form.confirm)
+            except User.DoesNotExist :
+                erreur = "Cette personne n'existe pas"
+                return render(request, 'subscription.html', locals())
             modif_form.followed_user = test2
             modif_form.confirm = ""
             if modif_form.followed_user == request.user:
-                modif_form.save()
-                #pass #erreur
+                erreur = "Vous ne pouvez vous suivre vous même"
             else:
                 try:
                     modif_form.save()
                 except:
-                    pass #erreur
-            return redirect('subscription')
+                    erreur = "Vous suivez déjà cette personne"
+            return render(request, 'subscription.html', locals())
 
 @login_required
 def delete_subs(request, id_subs):

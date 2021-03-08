@@ -18,6 +18,7 @@
     {{ form.first_name }}<br><br>
         <input type="submit">
     </form>
+    <div id="error">{{ erreur }}</div>
 </div>
 <p><a href="{% url 'connection' %}">Annuler</a></p>
 {% endblock %}
