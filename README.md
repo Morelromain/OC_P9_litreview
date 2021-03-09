@@ -7,64 +7,66 @@ Review web app using Django
 
 traduction à faire
 
-## Installation et Execution
+## Installation
 
-Version Python : 3.8.3  
+Python Version : 3.8.3  
 
-- Cloner ce dépôt de code à l'aide de la commande :  
+- Clone this repository using :  
 `$ git clone https://github.com/Morelromain/OC_P9_litreview.git`
 
-- Rendez-vous depuis un terminal à la racine du répertoire OC_P9_litreview avec la commande :  
+- Move to the OC_P9_litreview root folder with :  
 `$ cd ocmovies-api-fr`
 
-- Créer un environnement virtuel pour le projet :  
-`$ python -m venv env` sous windows ou `$ python3 -m venv env sous` macos ou linux.
+- Create a virtual environment for the project with :  
+`$ python -m venv env` on windows or `$ python3 -m venv env sous` on macos or linux.
 
-- Activez l'environnement virtuel :  
-`$ env\Scripts\activate` sous windows ou `$ source env/bin/activate` sous macos ou linux.`
-
-- Installez les dépendances du projet avec la commande :  
+- Install project dependencies with :  
 `$ pip install -r requirements.txt`
 
-## Exectution
+## Execution
 
-Démarrer le serveur avec `$ python manage.py runserver`
+- Activate the virtual environment with :  
+`$ env\Scripts\activate` on windows or `$ source env/bin/activate` on macos or linux.
 
-Pour accéder à l'application : [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
+- Run the server with `$ python manage.py runserver`
 
-## Usage admin
+To access the application : [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
 
-Pour accéder à la gestion de base de donnée : [http://127.0.0.1:8000/admin/](http://127.0.0.1:8000/admin/)
+## Admin use
 
-#### Compte administrateur pré-existant
-- Nom d’utilisateur : `Admin1`
-- Mot de passe : : `IbraIbra86`
+To access database management : [http://127.0.0.1:8000/admin/](http://127.0.0.1:8000/admin/)
 
-#### Créer un nouveau compte administrateur
+#### Pre-existing administrator account
+- Username : `Admin1`
+- Password : : `IbraIbra86`
+
+#### Create a new administrator account
 
 `$ python3 manage.py createsuperuser`
 
-#### Gestion de la base de données SQLITE3
+#### SQLITE3 database management
 
-__App Utilisateur__  
+__App Utilisateur__  *(User)*
 
-- `Utilisateurs` pour la gestion des Utilisateurs
-- `User follows` pour la gestion d'abonnement des Utilisateurs
+- `Utilisateurs` for User management
+- `User follows` for the management of User subscriptions
 
-Supprimer un `Utilisateurs` supprimera aussi ses `User follows`, `Tickets` et `Reviews`
+Delete one `Utilisateurs` will also remove its `User follows`, `Tickets` and `Reviews`
 
-__App Critique__  
+__App Critique__  *(Reviews)*
 
-- `Tickets` pour la gestion de demande de Critiques
-- `Reviews` pour la gestion des Critiques
+- `Tickets` for Reviews request management
+- `Reviews` for the management of Reviews
 
-Supprimer un `Tickets` supprimera aussi ses `Reviews`
+Delete one `Tickets` will also remove its `Reviews`
 
-*[Documentation Django](https://docs.djangoproject.com/fr/3.1/)*
+*[Django Documentation](https://docs.djangoproject.com/fr/3.1/)*
+
+---
 
 <a name="français"></a>*Français*
 
-## Installation et Execution
+## Installation
 
 Version Python : 3.8.3  
 
@@ -77,15 +79,15 @@ Version Python : 3.8.3
 - Créer un environnement virtuel pour le projet :  
 `$ python -m venv env` sous windows ou `$ python3 -m venv env sous` macos ou linux.
 
-- Activez l'environnement virtuel :  
-`$ env\Scripts\activate` sous windows ou `$ source env/bin/activate` sous macos ou linux.`
-
 - Installez les dépendances du projet avec la commande :  
 `$ pip install -r requirements.txt`
 
-## Exectution
+## Exécution
 
-Démarrer le serveur avec `$ python manage.py runserver`
+- Activez l'environnement virtuel :  
+`$ env\Scripts\activate` sous windows ou `$ source env/bin/activate` sous macos ou linux.`
+
+- Démarrer le serveur avec `$ python manage.py runserver`
 
 Pour accéder à l'application : [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
 
