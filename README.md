@@ -16,12 +16,17 @@ Version Python : 3.8.3
 
 - Cloner ce dépôt de code à l'aide de la commande:  
 `$ git clone https://github.com/Morelromain/OC_P9_litreview.git`
+
 - Rendez-vous depuis un terminal à la racine du répertoire OC_P9_litreview avec la commande:  
+
 `$ cd ocmovies-api-fr`
 - Créer un environnement virtuel pour le projet:  
+
 `$ python -m venv env` sous windows ou `$ python3 -m venv env sous` macos ou linux.
 - Activez l'environnement virtuel:  
+
 `$ env\Scripts\activate` sous windows ou `$ source env/bin/activate` sous macos ou linux.`
+
 - Installez les dépendances du projet avec la commande  
 `$ pip install -r requirements.txt`
 
