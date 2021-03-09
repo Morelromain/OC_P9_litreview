@@ -1,75 +1,57 @@
 # OC_P9_litreview
-Review web app using Djangoa
+Review web app using Django
 
-[Readme in English](#english)
-[Readme in French](#français)
+* [Readme in English](#english)  
+* [Readme in French](#français)  
 
-###English
+*English*
 
+traduction à faire
 
+*Français*
 
-## Installation
+## Installation et Execution
 
-### REST API
+Version Python : 3.8.3  
 
-`https://github.com/OpenClassrooms-Student-Center/OCMovies-API-EN-FR`
+- Cloner ce dépôt de code à l'aide de la commande `$ git clone https://github.com/Morelromain/OC_P9_litreview.git`
+- Rendez-vous depuis un terminal à la racine du répertoire OC_P9_litreview avec la commande `$ cd ocmovies-api-fr`
+- Créer un environnement virtuel pour le projet avec `$ python -m venv env sous windows` ou `$ python3 -m venv env sous macos ou linux.`
+- Activez l'environnement virtuel avec `$ env\Scripts\activate` sous windows ou `$ source env/bin/activate sous macos ou linux.`
+- Installez les dépendances du projet avec la commande `$ pip install -r requirements.txt`
 
-Follow instruction in the README OCMovies-API for :
-1. Install in local the REST API application : OCMovies-API
-2. Start the server (manage.py)
+## Exectution
 
-### Web server
+Démarrer le serveur avec `$ python manage.py runserver`
 
-1. Install an Apache server (I recommend Xampp distribution)
-2. Clone or Copy this repository in local website folder (ex : htdocs for Xampp)
-3. Start Apache server
+Pour acceder à l'application : [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
 
+## Usage admin
 
+Pour acceder à la gestion de base de donnée : [http://127.0.0.1:8000/admin/](http://127.0.0.1:8000/admin/)
 
+#### Compte administrateur pré-existant
+- Nom d’utilisateur : `Admin1`
+- Mot de passe : : `IbraIbra86`
 
+#### Créer un nouveau compte administrateur
 
-## Installation
+`$ python3 manage.py createsuperuser`
 
-### REST API
+#### Gestion de la BDD SQLITE3
 
-`https://github.com/OpenClassrooms-Student-Center/OCMovies-API-EN-FR`
+__App Utilisateur__  
 
-Follow instruction in the README OCMovies-API for :
-1. Install in local the REST API application : OCMovies-API
-2. Start the server (manage.py)
+- `Utilisateurs` pour la gestion des Utilisateurs
+- `User follows` pour la gestion d'abonnement des Utilisateurs
 
-### Web server
+Supprimer un `Utilisateurs` supprimera aussi ses `User follows`, `Tickets` et `Reviews`
 
-1. Install an Apache server (I recommend Xampp distribution)
-2. Clone or Copy this repository in local website folder (ex : htdocs for Xampp)
-3. Start Apache server
+__App Critique__  
 
+- `Tickets` pour la gestion de demande de Critiques
+- `Review` pour la gestion des Critiques
 
+Supprimer un `Tickets` supprimera aussi ses `Reviews`
 
-
-## Installation
-
-### REST API
-
-`https://github.com/OpenClassrooms-Student-Center/OCMovies-API-EN-FR`
-
-Follow instruction in the README OCMovies-API for :
-1. Install in local the REST API application : OCMovies-API
-2. Start the server (manage.py)
-
-### Web server
-
-1. Install an Apache server (I recommend Xampp distribution)
-2. Clone or Copy this repository in local website folder (ex : htdocs for Xampp)
-3. Start Apache server
-
-
-
-
-
-
-
-
-
-
-### Français
+*[Documentation Django](https://docs.djangoproject.com/fr/3.1/)*
