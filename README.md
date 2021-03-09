@@ -11,10 +11,10 @@ Python Version : 3.8.3
 `$ git clone https://github.com/Morelromain/OC_P9_litreview.git`
 
 - Move to the OC_P9_litreview root folder with :  
-`$ cd ocmovies-api-fr`
+`$ cd OC_P9_litreview`
 
 - Create a virtual environment for the project with :  
-`$ python -m venv env` on windows or `$ python3 -m venv env sous` on macos or linux.
+`$ python -m venv env` on windows or `$ python3 -m venv env` on macos or linux.
 
 - Install project dependencies with :  
 `$ pip install -r requirements.txt`
@@ -70,10 +70,10 @@ Version Python : 3.8.3
 `$ git clone https://github.com/Morelromain/OC_P9_litreview.git`
 
 - Rendez-vous depuis un terminal à la racine du répertoire OC_P9_litreview avec la commande :  
-`$ cd ocmovies-api-fr`
+`$ cd OC_P9_litreview`
 
 - Créer un environnement virtuel pour le projet :  
-`$ python -m venv env` sous windows ou `$ python3 -m venv env sous` macos ou linux.
+`$ python -m venv env` sous windows ou `$ python3 -m venv env` sous macos ou linux.
 
 - Installez les dépendances du projet avec la commande :  
 `$ pip install -r requirements.txt`
