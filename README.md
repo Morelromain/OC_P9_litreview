@@ -1,8 +1,8 @@
 # OC_P9_litreview
 Review web app using Djangoa
 
-[Readme in English](#English)
-[Readme in French](#Français)
+[Readme in English](#english)
+[Readme in French](#français)
 
 ###English
 
@@ -72,4 +72,4 @@ Follow instruction in the README OCMovies-API for :
 
 
 
-###Français
+### Français
