@@ -47,14 +47,14 @@ __App Utilisateur__  *(User)*
 - `Utilisateurs` for User management
 - `User follows` for the management of User subscriptions
 
-Delete one `Utilisateurs` will also remove its `User follows`, `Tickets` and `Reviews`
+Delete one `User` will also remove its `User follows`, `Tickets` and `Reviews`
 
 __App Critique__  *(Reviews)*
 
 - `Tickets` for Reviews request management
 - `Reviews` for the management of Reviews
 
-Delete one `Tickets` will also remove its `Reviews`
+Delete one `Ticket` will also remove its `Reviews`
 
 *[Django Documentation](https://docs.djangoproject.com/en/3.1/)*
 
@@ -106,13 +106,13 @@ __App Utilisateur__
 - `Utilisateurs` pour la gestion des Utilisateurs
 - `User follows` pour la gestion d'abonnement des Utilisateurs
 
-Supprimer un `Utilisateurs` supprimera aussi ses `User follows`, `Tickets` et `Reviews`
+Supprimer un `Utilisateur` supprimera aussi ses `User follows`, `Tickets` et `Reviews`
 
 __App Critique__  
 
 - `Tickets` pour la gestion de demande de Critiques
 - `Reviews` pour la gestion des Critiques
 
-Supprimer un `Tickets` supprimera aussi ses `Reviews`
+Supprimer un `Ticket` supprimera aussi ses `Reviews`
 
 *[Documentation Django](https://docs.djangoproject.com/fr/3.1/)*
