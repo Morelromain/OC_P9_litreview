@@ -1,10 +1,9 @@
 # OC_P9_litreview
 Review web app using Django
 
-[Readme in English](#english)  
 [Readme in French](#français)  
 
-<a name="english"></a>*English*
+*English*
 
 traduction à faire
 
