@@ -4,7 +4,7 @@ Review web app using Django
 [Readme in English](#english)  
 [Readme in French](#français)  
 
-*English*
+<a name="english"></a>*English*
 
 traduction à faire
 
@@ -63,7 +63,7 @@ Supprimer un `Tickets` supprimera aussi ses `Reviews`
 
 *[Documentation Django](https://docs.djangoproject.com/fr/3.1/)*
 
-Français
+<a name="français"></a>*Français*
 
 ## Installation et Execution
 
