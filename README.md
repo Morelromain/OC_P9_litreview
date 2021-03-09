@@ -63,7 +63,7 @@ Supprimer un `Tickets` supprimera aussi ses `Reviews`
 
 *[Documentation Django](https://docs.djangoproject.com/fr/3.1/)*
 
-*Français*
+Français
 
 ## Installation et Execution
 
