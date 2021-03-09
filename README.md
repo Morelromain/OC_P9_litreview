@@ -3,10 +3,6 @@ Review web app using Django
 
 [Readme in French](#français)  
 
-*English*
-
-traduction à faire
-
 ## Installation
 
 Python Version : 3.8.3  
@@ -60,11 +56,11 @@ __App Critique__  *(Reviews)*
 
 Delete one `Tickets` will also remove its `Reviews`
 
-*[Django Documentation](https://docs.djangoproject.com/fr/3.1/)*
+*[Django Documentation](https://docs.djangoproject.com/en/3.1/)*
 
 ---
 
-<a name="français"></a>*Français*
+<a name="français"></a>*En Français*
 
 ## Installation
 
