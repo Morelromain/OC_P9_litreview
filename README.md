@@ -14,21 +14,26 @@ traduction à faire
 
 Version Python : 3.8.3  
 
-- Cloner ce dépôt de code à l'aide de la commande `$ git clone https://github.com/Morelromain/OC_P9_litreview.git`
-- Rendez-vous depuis un terminal à la racine du répertoire OC_P9_litreview avec la commande `$ cd ocmovies-api-fr`
-- Créer un environnement virtuel pour le projet avec `$ python -m venv env sous windows` ou `$ python3 -m venv env sous macos ou linux.`
-- Activez l'environnement virtuel avec `$ env\Scripts\activate` sous windows ou `$ source env/bin/activate sous macos ou linux.`
-- Installez les dépendances du projet avec la commande `$ pip install -r requirements.txt`
+- Cloner ce dépôt de code à l'aide de la commande:  
+`$ git clone https://github.com/Morelromain/OC_P9_litreview.git`
+- Rendez-vous depuis un terminal à la racine du répertoire OC_P9_litreview avec la commande:  
+`$ cd ocmovies-api-fr`
+- Créer un environnement virtuel pour le projet:  
+`$ python -m venv env` sous windows ou `$ python3 -m venv env sous` macos ou linux.
+- Activez l'environnement virtuel:  
+`$ env\Scripts\activate` sous windows ou `$ source env/bin/activate` sous macos ou linux.`
+- Installez les dépendances du projet avec la commande  
+`$ pip install -r requirements.txt`
 
 ## Exectution
 
 Démarrer le serveur avec `$ python manage.py runserver`
 
-Pour acceder à l'application : [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
+Pour accéder à l'application : [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
 
 ## Usage admin
 
-Pour acceder à la gestion de base de donnée : [http://127.0.0.1:8000/admin/](http://127.0.0.1:8000/admin/)
+Pour accéder à la gestion de base de donnée : [http://127.0.0.1:8000/admin/](http://127.0.0.1:8000/admin/)
 
 #### Compte administrateur pré-existant
 - Nom d’utilisateur : `Admin1`
@@ -38,7 +43,7 @@ Pour acceder à la gestion de base de donnée : [http://127.0.0.1:8000/admin/](h
 
 `$ python3 manage.py createsuperuser`
 
-#### Gestion de la BDD SQLITE3
+#### Gestion de la base de données SQLITE3
 
 __App Utilisateur__  
 
@@ -50,7 +55,7 @@ Supprimer un `Utilisateurs` supprimera aussi ses `User follows`, `Tickets` et `R
 __App Critique__  
 
 - `Tickets` pour la gestion de demande de Critiques
-- `Review` pour la gestion des Critiques
+- `Reviews` pour la gestion des Critiques
 
 Supprimer un `Tickets` supprimera aussi ses `Reviews`
 
