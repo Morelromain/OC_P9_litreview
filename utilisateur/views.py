@@ -8,10 +8,6 @@ from utilisateur.models import User
 from utilisateur.models import UserFollows
 
 
-def connection(request):
-    pass
-
-
 def create_user(request, id_user=None):
     User = get_user_model()
     if request.method == "GET":
@@ -25,7 +21,7 @@ def create_user(request, id_user=None):
                 modif_form.set_password(modif_form.password)
                 modif_form.first_name = ""
                 modif_form.save()
-                return redirect('connection')
+                return redirect('login')
             else:
                 erreur = "Les mots de passes saisis ne sont pas identique"
         else:

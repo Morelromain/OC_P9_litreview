@@ -12,37 +12,6 @@ from utilisateur.models import UserFollows
 
 
 @login_required
-def feed(request):
-    usersfollows = UserFollows.objects.filter(user=request.user)
-    reviews = Review.objects.filter(user=request.user)
-    tickets = Ticket.objects.filter(user=request.user)
-    aaaa = []
-    for revi in reviews:
-        aaaa.append(revi.ticket)
-    reviews = reviews.annotate(content_type=Value('REVIEW', CharField()))
-    for tick in tickets:
-        reviews3 = Review.objects.filter(ticket=tick.id).exclude(user=request.user)
-        reviews3 = reviews3.annotate(content_type=Value('REVIEW', CharField()))
-        reviews = sorted(chain(reviews, reviews3), key=lambda post: post.time_created)
-    for uf in usersfollows:
-        reviews2 = Review.objects.filter(user=uf.followed_user)
-        reviews2 = reviews2.annotate(content_type=Value('REVIEW', CharField()))
-        reviews = sorted(chain(reviews, reviews2), key=lambda post: post.time_created)
-    reviews = set(reviews)
-    tickets = tickets.annotate(content_type=Value('TICKET', CharField()))
-    for uf in usersfollows:
-        tickets2 = Ticket.objects.filter(user=uf.followed_user)
-        tickets2 = tickets2.annotate(content_type=Value('TICKET', CharField()))
-        tickets = sorted(chain(tickets, tickets2), key=lambda post: post.time_created)
-    posts = sorted(
-        chain(reviews, tickets),
-        key=lambda post: post.time_created,
-        reverse=True
-    )
-    return render(request, 'feed.html', locals())
-
-
-@login_required
 def create_ticket(request, id_ticket=None):
     instance_ticket = Ticket.objects.get(pk=id_ticket) if id_ticket is not None else None
     if request.method == "GET":
@@ -67,9 +36,9 @@ def create_review(request, id_review=None):
     elif request.method == "POST":
         form = ReviewForm(request.POST, instance=instance_review)
         if form.is_valid():
-            aga = form.save(commit=False)
-            aga.rating = request.POST.get('tabs')
-            aga.save()
+            modif_form = form.save(commit=False)
+            modif_form.rating = request.POST.get('tabs')
+            modif_form.save()
             return redirect('feed')
 
 
@@ -124,6 +93,37 @@ def delete_ticket(request, id_ticket):
     ticket = get_object_or_404(Ticket, pk=id_ticket)
     ticket.delete()
     return redirect('myposts')
+
+
+@login_required
+def feed(request):
+    usersfollows = UserFollows.objects.filter(user=request.user)
+    reviews = Review.objects.filter(user=request.user)
+    tickets = Ticket.objects.filter(user=request.user)
+    aaaa = []
+    for revi in reviews:
+        aaaa.append(revi.ticket)
+    reviews = reviews.annotate(content_type=Value('REVIEW', CharField()))
+    for tick in tickets:
+        reviews3 = Review.objects.filter(ticket=tick.id).exclude(user=request.user)
+        reviews3 = reviews3.annotate(content_type=Value('REVIEW', CharField()))
+        reviews = sorted(chain(reviews, reviews3), key=lambda post: post.time_created)
+    for uf in usersfollows:
+        reviews2 = Review.objects.filter(user=uf.followed_user)
+        reviews2 = reviews2.annotate(content_type=Value('REVIEW', CharField()))
+        reviews = sorted(chain(reviews, reviews2), key=lambda post: post.time_created)
+    reviews = set(reviews)
+    tickets = tickets.annotate(content_type=Value('TICKET', CharField()))
+    for uf in usersfollows:
+        tickets2 = Ticket.objects.filter(user=uf.followed_user)
+        tickets2 = tickets2.annotate(content_type=Value('TICKET', CharField()))
+        tickets = sorted(chain(tickets, tickets2), key=lambda post: post.time_created)
+    posts = sorted(
+        chain(reviews, tickets),
+        key=lambda post: post.time_created,
+        reverse=True
+    )
+    return render(request, 'feed.html', locals())
 
 
 @login_required

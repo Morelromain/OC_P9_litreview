@@ -6,7 +6,6 @@ from OC_P9 import settings
 
 
 urlpatterns = [
-    path('', views.connection, name="connection"),
     path('register', views.create_user, name="register"),
     path('subscription', views.subscription, name="subscription"),
     path('accounts/', include('django.contrib.auth.urls')),

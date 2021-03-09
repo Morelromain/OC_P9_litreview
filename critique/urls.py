@@ -10,7 +10,6 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('feed', views.feed, name="feed"),
     path('addreview/<int:id_review>', views.create_review, name="addreview"),
-    path('linkreview', views.link_review, name="linkreview"),
     path('linkreview/<int:id_ticket>', views.link_review, name="linkreview"),
     path('deletereview/<int:id_review>', views.delete_review, name="deletereview"),
     path('addtandr', views.create_t_and_r, name="addtandr"),
