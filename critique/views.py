@@ -43,7 +43,7 @@ def create_review(request, id_review=None):
 
 
 @login_required
-def create_t_and_r(request, id_ticket=None):
+def create_t_and_r(request):
     if request.method == "GET":
         t_form = TicketForm()
         r_form = ReviewForm()
@@ -64,8 +64,8 @@ def create_t_and_r(request, id_ticket=None):
 
 
 @login_required
-def link_review(request, id_ticket=None):
-    instance_ticket = Ticket.objects.get(pk=id_ticket) if id_ticket is not None else None
+def link_review(request, id_ticket):
+    instance_ticket = Ticket.objects.get(pk=id_ticket)
     if request.method == "GET":
         form = ReviewForm()
         return render(request, 'linkreview.html', locals())
