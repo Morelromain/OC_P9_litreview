@@ -23,7 +23,7 @@
                     style="width: 200px; height: 200px;"></p>
             {% endif %}
             <p><small>{{ post.time_created }}</small></p>
-            {% if post not in aaaa %}
+            {% if post not in ticket_made %}
                 <a href="{% url 'linkreview' id_ticket=post.id %}">Ecrire une critique</a>
             {% endif %}
 
@@ -85,7 +85,7 @@
                             style="width: 200px; height: 200px;"></p>
                     {% endif %}
                     <p><small>{{ post.ticket.time_created }}</small></p>
-                    {% if post.ticket not in aaaa %}
+                    {% if post.ticket not in ticket_made %}
                         <a href="{% url 'linkreview' id_ticket=post.id %}">Ecrire une critique</a>
                     {% endif %}
             </div>

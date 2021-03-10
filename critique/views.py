@@ -100,9 +100,9 @@ def feed(request):
     usersfollows = UserFollows.objects.filter(user=request.user)
     reviews = Review.objects.filter(user=request.user)
     tickets = Ticket.objects.filter(user=request.user)
-    aaaa = []
+    ticket_made = []
     for revi in reviews:
-        aaaa.append(revi.ticket)
+        ticket_made.append(revi.ticket)
     reviews = reviews.annotate(content_type=Value('REVIEW', CharField()))
     for tick in tickets:
         reviews3 = Review.objects.filter(ticket=tick.id).exclude(user=request.user)

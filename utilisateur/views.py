@@ -42,11 +42,11 @@ def subscription(request):
             modif_form = form.save(commit=False)
             modif_form.user = request.user
             try:
-                test2 = User.objects.get(username=modif_form.confirm)
+                existing_user = User.objects.get(username=modif_form.confirm)
             except Exception:
                 erreur = "Cette personne n'existe pas"
                 return render(request, 'subscription.html', locals())
-            modif_form.followed_user = test2
+            modif_form.followed_user = existing_user
             modif_form.confirm = ""
             if modif_form.followed_user == request.user:
                 erreur = "Vous ne pouvez vous suivre vous même"
