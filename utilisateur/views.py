@@ -9,6 +9,7 @@ from utilisateur.models import UserFollows
 
 
 def create_user(request, id_user=None):
+    """create a user"""
     User = get_user_model()
     if request.method == "GET":
         form = UserForm()
@@ -31,6 +32,7 @@ def create_user(request, id_user=None):
 
 @login_required
 def subscription(request):
+    """see his subscribers, see and add his subscriptions"""
     usersfollows = UserFollows.objects.filter(user=request.user)
     followeds = UserFollows.objects.filter(followed_user=request.user)
     if request.method == "GET":
@@ -60,6 +62,7 @@ def subscription(request):
 
 @login_required
 def delete_subs(request, id_subs):
+    """remove his subscriptions"""
     subs = get_object_or_404(UserFollows, pk=id_subs)
     subs.delete()
     return redirect('subscription')

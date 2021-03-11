@@ -86,7 +86,7 @@
                     {% endif %}
                     <p><small>{{ post.ticket.time_created }}</small></p>
                     {% if post.ticket not in ticket_made %}
-                        <a href="{% url 'linkreview' id_ticket=post.id %}">Ecrire une critique</a>
+                        <a href="{% url 'linkreview' id_ticket=post.ticket.id %}">Ecrire une critique</a>
                     {% endif %}
             </div>
         {% endif %}

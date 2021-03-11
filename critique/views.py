@@ -13,6 +13,7 @@ from utilisateur.models import UserFollows
 
 @login_required
 def create_ticket(request, id_ticket=None):
+    """create or edit a request for review"""
     instance_ticket = Ticket.objects.get(pk=id_ticket) if id_ticket is not None else None
     if request.method == "GET":
         form = TicketForm(instance=instance_ticket)
@@ -28,6 +29,7 @@ def create_ticket(request, id_ticket=None):
 
 @login_required
 def create_review(request, id_review=None):
+    """edit a review"""
     instance_review = Review.objects.get(pk=id_review) if id_review is not None else None
     instance_ticket = Ticket.objects.get(pk=instance_review.ticket.id)
     if request.method == "GET":
@@ -44,6 +46,7 @@ def create_review(request, id_review=None):
 
 @login_required
 def create_t_and_r(request):
+    """create a request for review and a review"""
     if request.method == "GET":
         t_form = TicketForm()
         r_form = ReviewForm()
@@ -65,6 +68,7 @@ def create_t_and_r(request):
 
 @login_required
 def link_review(request, id_ticket):
+    """create a review linked to a request"""
     instance_ticket = Ticket.objects.get(pk=id_ticket)
     if request.method == "GET":
         form = ReviewForm()
@@ -83,6 +87,7 @@ def link_review(request, id_ticket):
 
 @login_required
 def delete_review(request, id_review):
+    """remove a review"""
     review = get_object_or_404(Review, pk=id_review)
     review.delete()
     return redirect('myposts')
@@ -90,6 +95,7 @@ def delete_review(request, id_review):
 
 @login_required
 def delete_ticket(request, id_ticket):
+    """remove a request for review and its reviesws"""
     ticket = get_object_or_404(Ticket, pk=id_ticket)
     ticket.delete()
     return redirect('myposts')
@@ -97,6 +103,7 @@ def delete_ticket(request, id_ticket):
 
 @login_required
 def feed(request):
+    """display their posts and replies and those of its subscribers"""
     usersfollows = UserFollows.objects.filter(user=request.user)
     reviews = Review.objects.filter(user=request.user)
     tickets = Ticket.objects.filter(user=request.user)
@@ -128,6 +135,7 @@ def feed(request):
 
 @login_required
 def view_myposts(request):
+    """display their posts"""
     tickets = Ticket.objects.filter(user=request.user)
     tickets = tickets.annotate(content_type=Value('TICKET', CharField()))
     reviews = Review.objects.filter(user=request.user)
