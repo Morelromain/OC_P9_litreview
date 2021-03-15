@@ -30,7 +30,7 @@ To access the application : [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
 
 ## Admin use
 
-To access database management : [http://127.0.0.1:8000/admin/](http://127.0.0.1:8000/admin/)
+To access database management : [http://127.0.0.1:8000/adminsecure/](http://127.0.0.1:8000/adminsecure/)
 
 #### Pre-existing administrator account
 - Username : `Admin1`
@@ -89,7 +89,7 @@ Pour accéder à l'application : [http://127.0.0.1:8000/](http://127.0.0.1:8000/
 
 ## Usage admin
 
-Pour accéder à la gestion de base de donnée : [http://127.0.0.1:8000/admin/](http://127.0.0.1:8000/admin/)
+Pour accéder à la gestion de base de donnée : [http://127.0.0.1:8000/adminsecure/](http://127.0.0.1:8000/adminsecure/)
 
 #### Compte administrateur pré-existant
 - Nom d’utilisateur : `Admin1`
