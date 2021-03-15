@@ -9,6 +9,10 @@ class UserForm(ModelForm):
     class Meta:
         model = User
         fields = ['username', 'password', 'first_name']
+        widgets = {
+            'password': forms.PasswordInput(),
+            'first_name': forms.PasswordInput(),
+        }
 
 
 class UserFollowsForm(ModelForm):

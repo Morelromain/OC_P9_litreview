@@ -3,6 +3,7 @@ from itertools import chain
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.db.models import CharField, Value
+from django.core.paginator import Paginator
 
 from critique.forms import ReviewForm
 from critique.forms import TicketForm
@@ -129,7 +130,7 @@ def feed(request):
         chain(reviews, tickets),
         key=lambda post: post.time_created,
         reverse=True
-    )
+    )  
     return render(request, 'feed.html', locals())
 
 
